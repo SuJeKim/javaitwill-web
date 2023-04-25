@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+        <style>
+            /* css */
+            table, td, th {
+                border: 1px solid darkgray; 
+            }
+        </style>
+		<title>HTML</title>
+	</head>
+	<body>
+		<h1>HTML Table</h1>
+        <!-- 테이블 관련 태그: 
+            <table></table>: 테이블 시작, 끝
+            <caption></caption>: 테이블 제목.
+            <thead>: table header.
+            <tbody>: table body.
+            <tfoot>: table footer.
+            <tr>: table row(행).
+            <td>: table data. 셀 데이터. "일반 폰트"
+            <th>: table cell header. 행 또는 열의 이름을 표시. "굵은 폰트"
+         -->
+
+        <table>
+            <caption>Front-End 시험 성적</caption>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>HTML</th>
+                    <th>CSS</th>
+                    <th>JavaScript</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>100</td>
+                    <td>90</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>80</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>합계</td>
+                    <td>300</td>
+                    <td>290</td>
+                    <td>280</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <hr />
+        <table>
+        <caption>회원 정보</caption>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>ID</th>
+                <th>PW</th>
+                <th>EMAIL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>12</td>
+                <td>123</td>
+                <td>@123</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>23</td>
+                <td>234</td>
+                <td>@34</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>34</td>
+                <td>345</td>
+                <td>@34</td>
+            </tr>
+        </tbody>
+        </table>
+        
+        <hr />
+        <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th colspan="2">전화번호</th>
+                <!-- <th rowspan="2"></th>: 일 경우 전화번호가 차지하는 공간이 3열까지는 차지를 하지 않는다. 왜냐 행을 합쳤으니까 열을 합친 것이 아님.-->
+            </tr>
+        </thead>
+        <tbody>
+         <tr>
+                <td>홍길동</td>
+                <td>010-1234-5688</td>
+                <td>02-1234-5678</td>
+         </tr>
+         <tr>
+                <td>아이티윌</td>
+                <td>010-0000-0000</td>
+                <td>02-0000-0000</td>
+         </tr>
+        </tbody>
+        </table>
+        
+        <hr />
+        
+        <table>
+           <!--  
+            <thead> <!-- 만들고자 하는 1행이 데이터를 넣는 부분이기에 head를 넣을 수가 없음 
+                <tr>
+                    <th>이름</th>
+                    <td>홍길동</td>
+                </tr>
+            </thead>
+             -->
+            <tbody>
+                <tr>
+                    <th>이름</th>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <th rowspan="2"> 전화번호</th>
+                    <td>010-1234-5678</td>
+                </tr> 
+                <tr>
+                    <td>02-1234-5678</td>
+                </tr> 
+            </tbody>
+        </table>
+        
+
+
+
+
+	</body>
+</html>
