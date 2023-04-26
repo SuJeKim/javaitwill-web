@@ -6,13 +6,102 @@
 	</head>
 	<body>
 		<h1>HTML Form</h1>
+        <!-- 
+        브라우저(클라이언트)에서 사용자의 입력을 받아서, 입력 내용을 서버로 전송하는 방법:
+        1. <form> 태그 안에서 필요한 입력 요소(input element)들을 작성.
+        2. <form> 태그의 submit 버튼을 클릭하면 입력 요소들에 입력한 내용들이 서버로 전송.
+        
+        전송 방식(method 속성):
+        1. GET 방식: form의 기본 전송 방식. method 속성을 설정하지 않으면 기본은 GET 방식.
+            - 클라이언트가 보내는 데이터가 요청 주소의 질의 문자열(query string: (주소창에서) ?q=ㅇㄹ)에 포함되는 방식.
+            - 요청 주소(request URL)의 형식:
+              프로토콜: //서버주소[:포트번호]/경로?질의문자열
+                (예) http://localhost:8081/html/result.html?q=value
+            - 요청 주소에서 경로와 질의 문자열은 ?로 구분
+            - 질의 문자열의 형식: param1=value1&param2=value2   
+            - 질의 문자열에서 요청 파라미터들은 &로 구분.
+        2. POST 방식: 클라이언트가 보내는 데이터가 요청 주소에 노출되지 않고,
+                      요청 패킷의 몸체(body)에 포함되서 전송되는 방식. 
+            - form의 기본 전송 방식이 아니기 때문에, method 속성 값을 "post"라고 설정        
+            - GET 방식은 요청 파라미터들을 URL에 포함시키는 방식이기 때문에, 전송되는 데이터의 크기가 제한이 있음.
+                -로그인의 경우에는 GET방식을 사용하면 안됨. 정보가 뜨기에(주소 창에)
+            - POST 방식은 전송 데이터의 크기 제한이 없음.(파일 업로드의 경우는 이걸로)
+         -->
         
         <h2>GET 방식 전송</h2>
         
         <form method="get" action="result.html"> <!-- 속성들 중 기본값이 할당되어 있는 것들이 존재함. -->
-            <input type="text" name="id" />
-            <input type="password" name="pwd" />
-            <input type="submit" /> <!-- submit을 클릭하면 form에 설정되어 있는 action 속성의 주소로 입력된 값들을 보냄. 그 값들을 구분하는 값이 name. -->
+            <input type="text" name="q" /> <!-- inline element -->
+           <!-- 
+           <form method="get" action="https://search.daum.net/search">
+           <input type="text" name="id" />
+           <input type="password" name="pwd" />  -> 입력시 ***으로
+           --> 
+            <input type="submit" value= "검색" /> <!-- submit을 클릭하면 form에 설정되어 있는 action 속성의 주소로 입력된 값들을 보냄. 그 값들을 구분하는 값이 name. -->
+           
+        </form>
+        
+        <hr />
+        
+        <h2>POST 방식 전송</h2>
+        <form method="post"  action="result.html">
+            <input type="text"  name="id" placeholder="아이디" />
+            <input type="password" name="pwd" placeholder="비밀번호"/>
+            <input type="submit" value="로그인" />
+        </form>
+        
+        <hr />
+        
+        <h2>여러가지 입력 타입들</h2>
+        
+        <form action="result.html"> <!-- method 속성 값을 설정하지 않은면 기본값은 GET. -->
+            <input type="text"  name="userid" placeholder="아이디"/>
+            <br />
+            <input type="password" name="pwd" placeholder="비밀번호" />
+            <br />
+            <input type="email" name="email" placeholder="email@abc.com" /> <!-- 서버가 타입에 맞게끔 입력이 되었는지도 확인함. 주소창에서>> @: %40(유니코드값)-->
+            <br />
+            <input type="number" name="age" placeholder="나이"/> <!-- 브라우저에서 타입이 number인 경우 숫자가 아닌것들은 입력 못함 -->
+            <br />
+            <input type="date" name="birthday" /> <!-- 브라우저가 다를 경우 다르게 보이는 경우가 존재함. -->   
+            <br />
+            <input type="datetime-local" name="createdTime" />
+            <br />
+            
+            <!-- 라디오 버튼 -->
+            <input type="radio" name="receive" value="T" id="rbl" /> <!-- value: 클라이언트(브라우저)가 서버로 보내는 값/ input에 입력한 값. -->
+            <!-- id="rb1" -> id가 다음과 같은 경우에도 input을 주고 label에서 for 속성을 통해 찾아가기 위해서 다음을 수행함. -->
+            <label for="rbl">수신 동의</label> <!-- 버튼에다가 이름을 붙여줌 -->
+            <input type="radio" name="receive" value="F" checked id="rb2" />
+            <label for="rb2">수신 거부</label>
+            <br />
+            <!-- 라디오 버튼은 이름이 같을 경우 한개만 선택하게 되어있음 이름이 다를 경우는 여러개 선택 가능 -->
+            
+            <!-- 체크 박스 -->
+            <input type="checkbox" name="city" value="서울" id="cb1" /> <!-- 한 줄만 입력이 가능 -->
+            <label for="cb1">서울</label>
+            <input type="checkbox" name="city" value="경기" id="cb2" />
+            <label for="cb2">경기</label>
+            <input type="checkbox" name="city" value="인천" id="cb3" />
+            <label for="cb3">인천</label>
+            <br />
+
+            <!-- 콤보박스(combo box), 목록 상자(drop-down list), 스피너(spinner) -->
+            <select name="domain"> <!-- value가 없어도 브라우저에서 서버로 도메인에 뜸 select에만 name을 주면 됨. > parameta가 없으면 전송이 안됨. -->
+                <option value="naver.com">네이버</option> <!-- option사이의 값이 value가 됨 다르게 변수를 설정하고 싶으면 value를 주면 됨. 그럴려면 다 줘야 함. -->
+                <option value="kakao.com">카카오</option> <!-- parameta: name value: paramete의 값들 (예) domain= naver.com-->
+                <option value="google.com">구글</option>
+                <option value="coupang.com">쿠팡</option>
+            </select>    
+            <br />
+            
+            <!-- 여러 줄 입력 상자 -->
+            <textarea rows="5" cols="40" name="memo"></textarea> <!-- inline 요소 + 5줄을 넘어가면 scroll bar가 생김 cols가 40이 넘으면 enter가 됨: word wrapping --> 
+            <br /> 
+
+            <input type="reset" /> <!-- 기존 입력 값들을 모드 지움. -->
+
+            <input type="submit" /> <!-- 입력 값들을 서버로 전송 + name 속성이 있는 것들만 서버로 요청 parameta로 전송이 됨. -->
         </form>
         
 	</body>
