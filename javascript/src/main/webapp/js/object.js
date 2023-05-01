@@ -47,6 +47,50 @@
         console.log(key, ':' , person[key]); // value를 출력하고 싶으면 인덱스 연산자 사용
     }
     
+    // 메서드를 갖는 객체:
+    const score = {
+        korean: 100,
+        english: 90,
+        math: 70,
+        sum: function () {
+            return this.korean + this.english + this.math;
+        }, // score가 갖는 메서드. -> 익명 함수이고 이를 변수 이름(sum)에 저장.
+        mean: function () {
+          return this.sum() / 3; // 함수 호출이니 () 사용하기.  
+        },
+    };
+    
+    console.log(score);
+    console.log(score.sum()); // 메서드 호출
+    console.log(score.mean());
+    
+    // 생성자 함수: this 사용 가능 -> 이떄는 snake 표기법으로 하기.대문자 사용.
+    function Score(korean, english, math){
+        
+        // 필드
+        this.korean = korean;
+        this.english = english;
+        this.math = math;
+        
+        // 메서드
+        this.sum = function () {
+            return this.korean + this.english + this.math;
+        };
+        this.mean = function () {
+            return this.sum() / 3;
+        };
+    }
+    
+    // 생성자 함수 호출:
+    const score1 = new Score(10, 20, 30); // 생성자 함수를 통해 객체 생성
+    console.log(score1);
+    console.log(score1.sum()); // 객체 메서드 호출
+    console.log(score1.mean());
+    
+    const score2 = new Score(90, 95, 89);
+    console.log(score2);
+     console.log(score2.sum());
+    console.log(score2.mean());
     
  });
  
