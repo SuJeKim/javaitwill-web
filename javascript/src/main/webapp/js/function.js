@@ -46,10 +46,14 @@
  // 전달되지 않은 파라미터의 값은 undefined가 됨. -> 연산을 수행할 수가 없음.
  console.log('result = ',result); //-> NaN(Not a Number)
  
- // 자바스크립트의 모든 함수는 arguments 이름의 프로피티를 가지고 있음.
+ // 자바스크립트의 모든 함수는 arguments 이름의 프로피티(property)를 가지고 있음.
  // 함수 호출에서 전달한 모든 값들을 저장하는 (배열과 비슷한) 객체.
  function test() {
      console.log(arguments);
+     for(let x of arguments){
+         console.log(x);
+     }
+     
  }
  
  test(1);
@@ -61,3 +65,78 @@
   * => 인덱스 i번에 해당 원소,
   * 출력 값이 배열의 모습.
   */
+ 
+ /**
+  * JavaScript 함수의 특징: 함수는 객체(object)!
+  * 1. 함수는 프로퍼티(property - 자바의 필드)를 가질 수 있음. (예) arguments
+  * 2. 함수는 변수에 저장할 수 있음.
+  * 3. 함수의 argument로 다른 함수를 전달할 수 있음.
+  * 4. 함수 내부에서 다른 함수를 선언(정의)할 수 있음.
+  * 5. 함수는 다른 함수를 리턴할 수 있음.
+  */
+ 
+ const plus = add; // 함수 자체를 변수에 저장. +  const plus = add(); > 함수를 호출(실행): 리턴값을 저장함.
+ result = plus(100, 200); // 변수 plus는 함수.
+ console.log('result = ', result);
+ 
+ // 익명 함수: 이름이 없는 함수. -> 변수에 저장하지 않고 출력하는 방법 만든 위치에서 바로 함수 호출만 가능함.-> 재활용화와는 느낌.
+ const minus = function (x, y) {
+     return x - y;
+ };
+ 
+ console.log('minus =', minus(1, 2));
+ 
+ // 2. 익명 함수를 선언과 동시에 호출 + 함수의 호출 결과인 리턴 값 저장함.
+ result = (function (x, y) {
+     return x / y;
+ }) (1, 2);
+ console.log('result = ', result);
+ 
+ 
+ // 3. 함수를 argument로 갖는 함수를 정의:
+ function calculate(x, y, operator) {
+     return operator(x, y);
+ }
+ 
+ result = calculate(1, 2, add); // operator라는 변수에 add를 저장함. -> const operator = add;
+ console.log('result =', result);
+ 
+ 
+ result = calculate(1, 2, function(x, y) {
+     return x - y;
+ });
+ console.log('result =', result);
+ 
+ function increase(n) {
+    // return function (x) { return x + n; }; <- 아래의 코드를 한 줄로.
+    
+    // 함수 안에서 함수를 정의 - 내부 함수.
+    function addN(x) {
+        return x + n;
+    }
+    
+    // 함수를 리턴.
+    return addN;
+ }
+ 
+ const IncreaseTen = increase(10); // increase(10)의 리턴값인 addN함수 { return (x + 10)}을 저장함. 
+ console.log(IncreaseTen);
+ console.log(IncreaseTen(1)); // -> 1 + 10
+ 
+ const increaseOne = increase(1);
+ console.log(increaseOne(1)); // -> 1 + 1
+ 
+ // 화살표 함수(arrow function)
+ // (파라미터,...) => { 실행 코드; .... } == 자바의 람다표현식.
+ // (파라미터, ...) => 리턴값 // 함수의 바디가 1문장만 존재 + 그 문장이 리턴문일 경우.
+ 
+ const fnAdd = (x, y) => { return x + y; }; //이름이 없는 익명함수.
+ console.log(fnAdd(3, 4));
+ 
+ 
+ const fnSubtract = (x, y) => x - y; // { retutn x - y; }
+ console.log(fnSubtract(3, 4));
+ 
+ 
+ 
+ 
