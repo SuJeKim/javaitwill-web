@@ -46,5 +46,28 @@
              
          }
      });
+     
+     // 이벤트 처리 3
+     const userName = document.querySelector('input#username');
+     const number = document.querySelector('input#age');
+     const result = document.querySelector('div#result');
+     
+     // keyboard event > 실시간 갱신: 
+     // keyup(-> 바로 갱신), keydown(-> 다음 글자가 존재할 대 갱신)에 따라 value가 달라짐.
+     //                >  change -> 입력 끝내고 넘어갔을 떄 다음으로 넘어감. 
+     userName.addEventListener('change' , function(event) {
+         updateNameAndAge();
+     });
+    
+     number.addEventListener('change', function(e) {
+        updateNameAndAge();
+    });
+ 
+     function updateNameAndAge() {
+         const name = userName.value; 
+         const age2 = number.value;
+         const text = '<b>이름:</b> ${name}, <b>나이:</b> ${age2}';
+         result.innerHTML = text;
+     }
   
  });
