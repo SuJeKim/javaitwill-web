@@ -32,11 +32,43 @@ document.addEventListener('DOMContentLoaded', function () {
              //console.log(element);
              element.style.backgroundColor = 'lime';
          }       
-
-        
     });
     
+    // id="btn3"인 버튼에 'click' 이벤트 리스너를 등록:
+    const btn3 = document.getElementById('btn3');
+    btn3.addEventListener('click', function () {
+        // tag 이름이 div인 모든 요소의 바탕색을 변경:
+        const divisions = document.getElementsByTagName('div');
+        for (let div of divisions){
+            div.style.backgroundColor = 'lightpink';
+        }
+    });
+    
+    // CSS selector(선택자) 문법을 argument로 사용하는 메서드:
+    // tagName, .className, #id, tagName.className#id
+    // parent descendent: 자손 요소 찾기
+    // parent > child: 자식 요소 찾기.
+    // element:peudo_selector: (예) button:hover, tr:nth-child(odd) + 공백 없이
+      
+    // document.querySelector(selector): selector로 찾을 수 있는 "첫번째" 요소를 리턴.
+    // document.querySelectorAll(selector): selector로 찾을 수 있는 "모든" 요소들의 collection을 리턴.
+    
+    const btn4 = document.querySelector('#btn4');
+    btn4.addEventListener('click', function () {
+        const division = document.querySelector('.c2'); // 같은 이름이 1개 이상이어도 1개만 찾아 줌.
+        //console.log(division);
+        division.style.backgroundColor = 'crimson';
+    });  
+
+    const btn5 = document.querySelector('#btn5');
+    btn5.addEventListener('click', function () {
+        const divisions = document.querySelectorAll('.c2');
+        //console.log(divisions);
+        for (let d of divisions) {
+            d.style.backgroundColor = 'DodgerBlue'; // 색깔이름은 대소문자 구분 없음.
+        }
+    });
+
+
 });
 
-
- 
