@@ -1,5 +1,10 @@
+<%@page import="java.time.LocalDateTime"%> <%-- Java class의 import 문장. --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- page 지시문: JSP 페이지의 설정. 컨텐트 타입 설정, 인코딩 설정, import 문장, ...
+     @와 Page 사이에서는 공백 유뮤 상관없음. 속성과 속성 사이 공백 필수
+  --%>    
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,6 +14,26 @@
 	<body>
 		<h1>JSP 소개</h1>
         <h2>Java Server Page</h2>
+        
+        <%-- 선언문(declaration) --%>
+        <%! /* Java block */
+        private static final String NAME = "scott"; // 상수 선언.
+        %>
+        
+        <%-- 스크립트릿(scriptlet --%>
+        <%
+        // 지역변수 선언:
+            LocalDateTime now = LocalDateTime.now(); // 서버 현재 시간. // '02' -> 숫자 2자리 출력. 한자리만 존재할 경우 앞 자리수는 0으로.
+            String timeStr = String.format("%d-%02d-%02d %02d:%02d:%02d",
+                    now.getYear(), now.getMonthValue(), now.getDayOfMonth(), now.getHour(), now.getMinute(), now.getSecond());
+            System.out.println("intro.jsp - scriptlet");
+        %>
+        
+        <p>
+            <b>시간:<%= timeStr %></b>
+            <br />
+            이름: <%= NAME %>
+        </p>
         
         <!-- HTML, XML 주석 -->
         <%-- JSP 주석: jsp 파일 -> '자바 파일 -> 클래스 파일' == '컴파일' -> doGet() -> HTML --%>
@@ -30,6 +55,18 @@
                 -> 객체 생성 -> 메서드 호출 -> 응답.
              * 요청: 생성되어 있는 객체에서 메서드 호출 -> 응답.   
            - 화면을 만들어 낼떄 많이 사용.  
+        3. JSP 구성 요소(태그):
+            (1) 주석(comment)
+            (2) 지시문(directive): <%@ ... %>
+                <%@ page ... %>, <%@ include ... %>, <%@ taglib ... %>, ...
+            (3) 선언문(declaration): <%! ... %>
+                JSP가 Java로 변환될 떄, 클래스의 필드와 메서드를 선언하는 부분.
+            (4) 스크립트릿(scriptlet): <% ... %>
+                JSP가 Java로 변환될 떄, jspService() 메서드 안에 포함되는 자바 코드.
+                지역 변수 선언, 조건문, 반복문, 출력문, 메서드 호출, ....
+            (5) 식, 표현식(expression): <%= ... %>
+                JSP가 Java로 변환될 때, out.print() 메서드의 argument로 전달되는 값. 공백이 중요하지 않음
+                HTML에 바로 삽입되는 '값'            
          --%>
         
 	</body>

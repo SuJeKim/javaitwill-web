@@ -30,7 +30,9 @@
                 <!-- URL: 상대경로: http://localhost:8081/contextRoot/ 까지를 현재 작업 디렉토리로 하고, 그 이후 주소만 표기 -->
                 <a href="intro.jsp">JSP 소개</a>
             </li>
-            
+            <li>
+                <a href="form.jsp">form 제출</a>
+            </li>
         </ul>
     </body>
 </html>
