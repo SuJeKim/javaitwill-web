@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
  */
 public class FirstServlet extends HttpServlet {
     // src/main/webapp/WEB-INF/web.xml에서 요청 주소 매핑이 되어 있음.
+    // web.xml: 서버가 사용하는 환경 설정 정보
     // -> http://localhost:8081/jsp1/ex1 요청에 매핑된 서블릿 클래스.
     
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,7 @@ public class FirstServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 클라이어트에서 GET 방식의 요청이 왓을 때, WAS(Web Application Server, Tomcat)가 호출하는 메서드.
 	    // 파라미터 request: 클라이언트가 보낸 요청에 대한 정보를 가지고 있는 객체.
@@ -60,6 +62,7 @@ public class FirstServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 // 클라이어트에서 POST 방식의 요청이 왓을 때, WAS(Web Application Server, Tomcat)가 호출하는 메서드.
 	    doGet(request, response);
