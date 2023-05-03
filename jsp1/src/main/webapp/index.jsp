@@ -20,6 +20,17 @@
             <li>
                 <a href="ex2">second Servlet</a> <!-- ex2를 처리할 수 있는 jsp나 Servlet이 존재하지 않기에 -->
             </li>
+            <li>
+                <a href="ex3">포워드</a>
+            </li>
+            <li>
+                <a href="ex4">리다이렉트</a>
+            </li>
+            <li>
+                <!-- URL: 상대경로: http://localhost:8081/contextRoot/ 까지를 현재 작업 디렉토리로 하고, 그 이후 주소만 표기 -->
+                <a href="intro.jsp">JSP 소개</a>
+            </li>
+            
         </ul>
     </body>
 </html>
