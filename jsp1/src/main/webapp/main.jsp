@@ -27,7 +27,7 @@
           하나의 자바 클래스 파일로 변환되고 컴파일됨.
          --%>
          
-        <%@ include file="header.jspf" %>
+        <%@ include file="header.jsp" %>
         
         <main>
     		<h1>메인 페이지</h1>
