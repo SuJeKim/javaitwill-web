@@ -23,7 +23,7 @@
             * String request = ""; => error 발생
               -> request: 이미 선언되어 있는 지역변수이기에
             - *request: 클라이언트에서 서버로 보내는 정보들이 포함된 객체.
-            - *response: 서버에서 응답을 만들어내기 위한 객체.
+            - *response: 서버에서 응답을 만들어내기 위한 객체. - getwriter(), sendRedirect().
             - *pageContext: JSP 페이지의 정보들을 저장하는 객체.
             - *session: 세션이 유지되는 동안 정보들을 저장하기 위한 객체.
             - *application: 애플리케이션이 동작 중에 필요한 정보들을 저장하기 위한 객체. => 가장 오래 메모리에 남아있음.
