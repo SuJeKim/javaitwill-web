@@ -47,6 +47,7 @@
              ==> ${ requestScope.var }
              ==> ${ sessionScope.var }
              ==> ${ applicationScope.var }  
+             ==> applicationScope에서도 못 찾으면 null.
           --%>
           
           <%-- 상태 저장 변수에 상태 저장 --%>
