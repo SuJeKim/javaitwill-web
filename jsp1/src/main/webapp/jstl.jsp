@@ -15,6 +15,7 @@
         <%-- JSTL 사용하기 
             1. POM.xml 파일에 의존성(dependency) 추가(jstl:jstl:1.2) 그룹아이디:아티펙트 아이디:버전 번호
             2. JSTL을 사용하는 JSP 파일에서 taglib 지시문을 설정.
+            -> JSTL에서 'var' 변수를 설정한 후 따로 사용을 할 때는 el사용하기 -> ${var}에 넣음
         --%>
         
         <%
