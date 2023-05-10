@@ -15,6 +15,7 @@ import java.io.IOException;
 // name: 서버(톰캣)가 변수를 찾을 때 사용함
 // urlPatterns: 해당 요청에 따라 html을 보냄. 즉, 무슨 요청 처리가 중요함. -> url주소에 따라서 해당 homeController가 처리하겠다.
 //              -> urlPatterns = { "/" }: 모든 요청을 다 처리함: context root후에 어떤 주소가 오든 모든 요청을 처리함.
+//              -> urlPatterns에서 URL을 설정할 때는 Context root를 기준으로 작성 ==>  Context root를 포함한 전체 URL을 작성
 // ==> 다음 에너테이션은 톰켓/WAS(Web Application Server) 을 위한 것.             
 
 public class HomeController extends HttpServlet {
