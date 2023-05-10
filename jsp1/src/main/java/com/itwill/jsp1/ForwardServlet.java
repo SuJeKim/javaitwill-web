@@ -27,7 +27,7 @@ public class ForwardServlet extends HttpServlet {
 	    // 클라이언트에서 서버로 온 요청을 새로운 페이지로 "forward" 방식으로 이동:
 	    // 같은 WAS(Web Application Server)의 같은 웹 애플리케이션 안에서만 페이지 이동이 가능.
 	    // -> 같은 WAS: tomcat, 같은 웹 애플리케이션: 같은 프로젝트.
-	    // 다른(웹) 서버 또는 다른 웹 애플리케이션의 페이지로 forward 이동을 할 수 있음.
+	    // 다른(웹) 서버 또는 다른 웹 애플리케이션의 페이지로 forward 이동을 할 수 없음.
 	    // 요청 주소(URL)가 바뀌지 않음.
 	    // -> jsp가 보내준 정보를 보고 있음. 그런데 주소는 servlet.
 	    // -> servlet이 없어도 jsp가 단독으로 처리 가능함.
