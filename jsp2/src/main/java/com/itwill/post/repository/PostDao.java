@@ -101,6 +101,92 @@ public class PostDao {
        
        return post;
    }
+
+   private static final String SQL_INSERT =
+           "insert into POSTS (TITLE, CONTENT, AUTHOR) values (?, ?, ?)";
+   
+   public int insert(Post post) {
+       log.info("insert({})", post);
+       log.info(SQL_INSERT);
+       
+       int result = 0; // executeUpdate() 결과(insert 결과)를 저장할 변수
+       
+       Connection conn = null;
+       PreparedStatement stmt = null;
+       
+       try {
+        conn = ds.getConnection();
+        stmt = conn.prepareStatement(SQL_INSERT);
+        
+        stmt.setString(1, post.getTitle());
+        stmt.setString(2, post.getContent());
+        stmt.setString(3, post.getAuthor());
+        
+        result = stmt.executeUpdate();
+        
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+       
+       return result;
+   }
+   
+   
+   private static final String SQL_SELECT_BY_ID =
+           "select * from POSTS where ID = ?";
+
+   public List<Post> select(int id) {
+       log.info("select({})", id);
+       log.info(SQL_SELECT_BY_ID);
+       
+       List<Post> list = new ArrayList<>();
+       
+       Connection conn = null;
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       try {
+           conn = ds.getConnection();
+           stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+           
+           stmt.setInt(1, id);
+           log.info(SQL_SELECT_BY_ID);
+           
+           rs = stmt.executeQuery();
+           
+           while(rs.next()) {
+               Post post = recordToPost(rs);
+               list.add(post);
+           }
+           log.info("list size / num of rows = {}", list.size());
+           
+           
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           try {
+               rs.close();
+               stmt.close();
+               conn.close();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+
+       }
+       
+       
+       return list;
+   }
+   
+  
    
    
 
