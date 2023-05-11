@@ -45,7 +45,9 @@
             <artifactId>HikariCP</artifactId>
             <version>5.0.1</version>
         </dependency>
-        <!-- Log4j: 로그 출력 라이브러리 => syso보다 더 편하게 출력.-->
+        <!-- Log4j: 로그 출력 라이브러리 => syso보다 더 편하게 출력.
+            https://logging.apache.org/log4j/2.x/ 사이트 참고.
+        -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
