@@ -24,6 +24,9 @@
     -->
     <Loggers>
     <!-- log4j 로그 레벨: all < trace < debug < info < warn < error < fatal (심각) -->
+        <Logger name="com.zaxxer.hikari" level="INFO" additivity="false" >
+            <AppenderREF ref="out" />
+        </Logger>
         <Root level="INFO" additivity="false">
             <AppenderREF ref="out" />
         </Root>
