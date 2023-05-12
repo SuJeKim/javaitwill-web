@@ -44,7 +44,7 @@ public class PostUpdateController extends HttpServlet {
 		log.info("포스트 업데이트 결과 = {}", result);
 		
 		// 수정 후 상세보기 페이지로 redirect
-	    response.sendRedirect("/post/detail?id=" + id); // contextRoot 부터 쓰기.
+	    response.sendRedirect("/post/post/detail?id=" + id); // contextRoot 부터 쓰기.
 	}
 
 }

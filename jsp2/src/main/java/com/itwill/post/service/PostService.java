@@ -62,6 +62,12 @@ public class PostService {
         
         return postDao.update(post);
     }
+
+    public List<Post> searchByvalues(String values, String keyword) {
+        log.info("searchByvalues = ({} , {})", values, keyword);
+        
+        return postDao.searchByvalues(values, keyword);
+    }
     
     
 } // class end

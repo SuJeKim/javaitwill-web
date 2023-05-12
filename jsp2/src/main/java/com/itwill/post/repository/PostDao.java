@@ -263,6 +263,124 @@ public class PostDao {
        
        return result;
    }
+   
+   // 비슷한 문자열을 찾는다.
+   
+   private static final String SQL_SEARCH_TWICE = 
+           "select * from POSTS WHERE TITLE like ? or CONTENT like ?";
+   
+   private static final String SQL_SEARCH_TITLE = 
+           "select * from POSTS WHERE TITLE like ?";
+   
+   private static final String SQL_SEARCH_CONTENT = 
+           "select * from POSTS WHERE CONTENT like ?";
+   
+   private static final String SQL_SEARCH_AUTHOR = 
+           "select * from POSTS WHERE AUTHOR like ?";
+   
+ 
+
+   public List<Post> searchByvalues(String values, String keyword) {
+       log.info("searchByvalues({}, {})", values, keyword);
+       
+       
+       List<Post> list = new ArrayList<>();
+       
+       Post post = null;
+       Connection conn = null;
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       String title = null;
+       String content = null;
+       String author = null;
+       
+      
+
+       try {
+           
+           conn = ds.getConnection();
+           
+           if(values.equals("t")) {
+               
+               log.info(SQL_SEARCH_TITLE);
+               stmt = conn.prepareStatement(SQL_SEARCH_TITLE);
+               stmt.setString(1, "%" + keyword + "%");
+               
+               rs = stmt.executeQuery();
+               
+               while(rs.next()) {
+                   post = recordToPost(rs);
+                   list.add(post);
+               }
+               log.info("list size / num of rows = {}", list.size());
+               
+           } else if (values.equals("c")) {
+               
+               log.info(SQL_SEARCH_CONTENT);
+               
+               stmt = conn.prepareStatement(SQL_SEARCH_CONTENT);
+               stmt.setString(1, "%" + keyword + "%");
+               
+               rs = stmt.executeQuery();
+               
+               while(rs.next()) {
+                   post = recordToPost(rs);
+                   list.add(post);
+               }
+               log.info("list size / num of rows = {}", list.size());
+               
+           } else if (values.equals("tc")) {
+               
+               log.info(SQL_SEARCH_TWICE);
+               
+               stmt = conn.prepareStatement(SQL_SEARCH_TWICE);
+               stmt.setString(1, "%" + keyword + "%");
+               
+               rs = stmt.executeQuery();
+               
+               while(rs.next()) {
+                   post = recordToPost(rs);
+                   list.add(post);
+               }
+               log.info("list size / num of rows = {}", list.size());
+               
+           } else if (values.equals("a")) {
+               
+               log.info(SQL_SEARCH_AUTHOR);
+               
+               stmt = conn.prepareStatement(SQL_SEARCH_AUTHOR );
+               stmt.setString(1, "%" + keyword + "%");
+               
+               rs = stmt.executeQuery();
+               
+               while(rs.next()) {
+                   post = recordToPost(rs);
+                   list.add(post);
+               }
+               log.info("list size / num of rows = {}", list.size());
+               
+           }
+               
+           
+           
+           
+          
+           
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           try {
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       }
+       
+       return list;
+   }
   
    
    

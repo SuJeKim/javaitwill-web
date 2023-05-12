@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"
+    %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
-	<head>
-	  	<meta charset="UTF-8" />
-		<title>POST</title>
-	</head>
-	<body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>POST</title>
+    </head>
+    <body>
         <header>
-    		<h1>포스트 목록 페이지</h1>
+            <h1>포스트 검색 페이지</h1>
         </header>
         
         <nav>
@@ -41,17 +42,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${ posts }" var="post">
+                    <c:forEach items="${ posts }" var="posts">
                         <tr>
-                            <td>${ post.id }</td>
+                            <td>${ posts.id }</td>
                             <td>
                                 <c:url value="/post/detail" var="postDetail">
-                                    <c:param name="id" value="${ post.id }"></c:param> <!-- 쿼리 문에서 id가 몇인지 확인 -->
+                                    <c:param name="id" value="${ posts.id }"></c:param> <!-- 쿼리 문에서 id가 몇인지 확인 -->
                                 </c:url>
                                 <a href="${ postDetail }">${ post.title }</a>
                             </td>
-                            <td>${ post.author }</td>
-                            <td>${ post.modifiedTime }</td>
+                            <td>${ posts.author }</td>
+                            <td>${ posts.modifiedTime }</td>
                         </tr>
                     
                     </c:forEach>
@@ -72,5 +73,5 @@
             
         </main>
         
-	</body>
+    </body>
 </html>
