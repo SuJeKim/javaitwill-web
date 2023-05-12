@@ -45,8 +45,8 @@ public class PostService {
         return postDao.insert(post);
     }
 
-    public List<Post> read(int id) {
-        log.info("read({})", id);
+    public Post read(long id) {
+        log.info("read(id={})", id);
         
         return postDao.select(id);
     }

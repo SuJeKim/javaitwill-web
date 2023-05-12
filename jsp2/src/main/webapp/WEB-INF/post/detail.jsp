@@ -9,7 +9,7 @@
 	</head>
 	<body>
         <header>
-    		<h1>포스트 상세 페이지</h1>
+    		<h1>포스트 상세보기 페이지</h1>
         </header>
         
         <nav>
@@ -22,7 +22,28 @@
         </nav>
         
        <main>
-       
+            <form>
+                <div>
+                    <input type="number" value="${ posts.id }"/>
+                </div>
+                <div>
+                    <input type="text" value="${ posts.title }"/>
+                </div>
+                <div>
+                    <textarea rows="5" cols="">${ posts.content }</textarea>
+                </div>
+                <div>
+                    <input type="text" value="${ posts.author }"/>
+                </div>
+                <div>
+                    <input type="text" value="${ posts.createdTime }"/>
+                </div>
+                <div>
+                    <input type="text" value="${ posts.modifiedTime }"/>
+                </div>
+            </form>
+            <%--
+             내가 고려한 것. -> 그냥 나옴.
             <c:forEach var="post" items="${posts}">
         
                 <div>
@@ -45,6 +66,7 @@
                 </div>
                 
             </c:forEach>
+             --%>
        </main>
         
         
