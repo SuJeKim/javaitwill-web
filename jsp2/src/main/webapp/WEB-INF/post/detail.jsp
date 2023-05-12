@@ -15,8 +15,18 @@
         <nav>
             <ul>
                 <li>
+                    <c:url var="mainPage" value="/" />
+                    <a href="${ mainPage }">메인 페이지</a>
+                </li>
+                <li>
                     <c:url var="listPage" value="/post"></c:url>
-                    <a href="${ listPage }">목록 페이지</a> 
+                    <a href="${ listPage }">포스트 목록</a> 
+                </li>
+                <li>
+                    <c:url var="postModify" value="/post/modify">
+                        <c:param name="id" value="${ posts.id }"></c:param>
+                    </c:url>
+                    <a href="${ postModify }">포스트 수정</a>
                 </li>
             </ul>
         </nav>
@@ -24,22 +34,22 @@
        <main>
             <form>
                 <div>
-                    <input type="number" value="${ posts.id }"/>
+                    <input type="text" value="${ posts.id }" readonly />
                 </div>
                 <div>
-                    <input type="text" value="${ posts.title }"/>
+                    <input type="text" value="${ posts.title }" readonly />
                 </div>
                 <div>
-                    <textarea rows="5" cols="">${ posts.content }</textarea>
+                    <textarea rows="5" cols="80" readonly>${ posts.content }</textarea>
                 </div>
                 <div>
-                    <input type="text" value="${ posts.author }"/>
+                    <input type="text" value="${ posts.author }" readonly />
                 </div>
                 <div>
-                    <input type="text" value="${ posts.createdTime }"/>
+                    <input type="text" value="${ posts.createdTime }" readonly />
                 </div>
                 <div>
-                    <input type="text" value="${ posts.modifiedTime }"/>
+                    <input type="text" value="${ posts.modifiedTime }" readonly />
                 </div>
             </form>
             <%--
