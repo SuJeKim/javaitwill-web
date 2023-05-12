@@ -50,6 +50,18 @@ public class PostService {
         
         return postDao.select(id);
     }
+
+    public int delete(Long id) {
+        log.info("delete({})", id);
+        
+        return postDao.delete(id);
+    }
+    
+    public int update(Post post) {
+        log.info("update({})", post);
+        
+        return postDao.update(post);
+    }
     
     
 } // class end
