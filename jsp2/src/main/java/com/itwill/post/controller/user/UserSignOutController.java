@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -26,7 +28,15 @@ public class UserSignOutController extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		log.info("doGet()");
 		
+		// Request 객체에서 Session 정보를 찾음.
+		HttpSession session = request.getSession();
+		
+		session.invalidate(); // Session을 무효화 -> 지움. -> 로그 아웃.
+		
+		// 로그 아웃 이후에 로그인 페이지로 이동. -> 페이지 이동은 설정은 자율.
+		response.sendRedirect("/post/user/signin");
 	}
 
 	
