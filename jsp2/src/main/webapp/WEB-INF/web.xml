@@ -2,12 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
   <display-name>jsp2</display-name>
   <filter>
-    <display-name>EncodingFilter</display-name>
-    <filter-name>EncodingFilter</filter-name>
+    <display-name>encodingFilter</display-name>
+    <filter-name>encodingFilter</filter-name>
     <filter-class>com.itwill.post.filter.EncodingFilter</filter-class>
   </filter>
+  <!-- filter까지는 톰캣이 객체를 생성해서 호출. 클래스 주소를 알고 변수의 이름을 아니 객체 생성 가능함.-->
   <filter-mapping>
-    <filter-name>EncodingFilter</filter-name>
-    <url-pattern>/EncodingFilter</url-pattern>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern> <!-- 서버로 들어오는 모든 요청을 필터가 먼저 받아들이고 서블릿에게 넘기겠다. 단, 특정 URL만 처리하는 Filter의 경우 그 주소를 적으면 됨. -->
   </filter-mapping>
+  <!--  어떤 요청 URL들을 필터링 할 것인지 지정. 그래서 변수의 이름이 동일 해야 찾아 갌 있음. -->
+  
 </web-app>
