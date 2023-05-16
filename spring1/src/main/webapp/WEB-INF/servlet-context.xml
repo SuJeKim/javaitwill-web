@@ -25,11 +25,13 @@
      <!-- View Resolver: Spring MVC에서 사용하는 뷰(JSP, ...)를 찾기 위한 설정: 어떤 폴덩 밑에 jsp파일이 있느냐 -->   
      <!-- dispacherservlet이 생성될 떄 해당 클래스의 객체가 생성됨. -->
      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views" /> <!-- 폴더 생성 -->
+        <property name="prefix" value="/WEB-INF/views/" /> <!-- 폴더 생성 + 리턴을 할 경우 리턴값이 value="/" 뒤에 붙음. 그래서 파일이름만 붙이면 됨.-->
         <property name="suffix" value=".jsp" /> <!-- 해당 폴더의 파일의 확장자가 .jsp -->
      </bean>   
+     <!-- bean:자바 객체, property: 그 객체가 가지고 있는 멤버 변수 -->
      
-     <!-- 특정 패키지 아래에 선언된 컴포넌트 애너테이션(@Controller, @RestController)이 선언된 클래스들을 bean으로 관리:
+     
+     <!-- 특정 패키지(com.itwill.spring1.web) 아래에 선언된 컴포넌트 애너테이션(@Controller, @RestController)이 선언된 클래스들을 bean으로 관리:
           컨트롤러 클래스들을 작성하는 패키지 이름.
      -->
      <context:component-scan base-package="com.itwill.spring1.web" />

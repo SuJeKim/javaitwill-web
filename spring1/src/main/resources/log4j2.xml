@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- log4j2 환경설정 -->
-<configuration>
+<Configuration>
     <Appenders>
         <Console name="out" target="SYSTEM_OUT">
             <PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss.SSS} %-5level %logger - %m%n" />
@@ -15,4 +15,4 @@
              <AppenderRef ref="out" />
         </Root>
     </Loggers>
-</configuration>
+</Configuration>
