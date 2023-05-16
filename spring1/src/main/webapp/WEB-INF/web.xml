@@ -23,10 +23,23 @@
   </filter-mapping>
   
   <!-- Listener 설정 -->
-  <listener>
+  <listener> <!-- Context를 로딩하는 리스너 -->
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
   <!-- Servlet 설정 -->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/servlet-context.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup> <!-- servlet 우선 순위: 어떤 servlet을 가장 먼저 설정(메모리에 올린 것 인지)을 할 것이냐,  1: 메모리 로딩 1순위 > 모든 요청을 처리할 것이어서-->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern> <!-- 모든 요청(context-root 포함 하위 경로 다) 처리 -->
+  </servlet-mapping>
   
 </web-app>
