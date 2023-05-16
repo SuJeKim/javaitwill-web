@@ -21,7 +21,14 @@ import org.slf4j.LoggerFactory;
  * servlet과 마찬가지로 web.xml에도 코드가 자동 완성됨.
  */
 // Filter가 처리할 요청 주소(패턴) 설정:
-// (1) web.xml 파일에서 설정하거나 -> 해당 web.xml파일에 설명 존재.
+// (1) web.xml 파일에서 설정하거나 ->
+/*
+ * </filter> <%-- 변수 선언 즉, EncodingFilter encodingFilter  --%>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern> <%-- 필터에서 조건이 맞을 경우 넘어갈 모든 controller 즉, 모든 servlet 해당. 만약 따로 호출할 controller가 있으면 해당 url을 입력하면 됨.--%>
+  </filter-mapping>
+ */
 // (2) @WevFilter 애너테이션으로 설정할 수 없음.
 public class EncodingFilter extends HttpFilter implements Filter {
 
