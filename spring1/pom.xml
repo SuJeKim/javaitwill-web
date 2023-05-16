@@ -13,7 +13,7 @@
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>
         <version>6.0.0</version>
-        <scope>provided</scope> <!-- 톰캣 서버에서 제공이 되는 라이브러리. -> 빌드할 때 사용해야 하니-->
+        <scope>provided</scope> <!-- 톰캣 서버에서 제공이 되는 라이브러리. -> 빌드할 때 사용해야 하니 + 컴파일 할 때만 사용하고, 중복된 라이브러리들을 또 저장할 필요는 없다.-->
     </dependency>
     
     <!-- JSTL -->
@@ -66,6 +66,7 @@
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>1.18.26</version>
+        <scope>compile</scope> <!-- 컴파일할 때만 사용한다. 컴파일 시 자동 삽입이 되기에 웹 서비스에서는 따로 저장할 필요가 없다.-->
     </dependency>
     <!-- Spring Web MVC -->
     <dependency>
