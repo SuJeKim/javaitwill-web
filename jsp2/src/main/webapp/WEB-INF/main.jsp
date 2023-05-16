@@ -34,6 +34,11 @@
                         <c:url var="signInPage" value="/user/signin"></c:url>
                         <a href="${ signInPage }">로그인</a>
                     </li>
+                    <li>
+                        <c:url var="signUpPage" value="/user/signup"></c:url>
+                        <a href="${ signUpPage }">회원가입</a> <%-- controller 안 만듦. 404가 정상. --%>
+                    </li>
+                    
                 </c:if>
                 
                 <li>

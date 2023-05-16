@@ -14,6 +14,26 @@
         
         <nav>
             <ul>
+                <c:if test="${ not empty signedInUser }">
+                    <li>
+                        <span>${ signedInUser }</span>
+                        <c:url var="signOut" value="/user/signout"></c:url>
+                        <a href="${ signOut }">로그 아웃</a>
+                    </li>
+                </c:if>
+                
+                <!-- 로그인한 username이 없는 경우 -->
+                <c:if test="${ empty signedInUser }">
+                    <li>
+                        <c:url var="signInPage" value="/user/signin"></c:url>
+                        <a href="${ signInPage }">로그인</a>
+                    </li>
+                    <li>
+                        <c:url var="signUpPage" value="/user/signup"></c:url>
+                        <a href="${ signUpPage }">회원가입</a> <%-- controller 안 만듦. 404가 정상. --%>
+                    </li>
+                    
+                </c:if>
                 <li>
                     <%-- JSP에서 해당.
                          상대경로에서 현재 푤더(./)의 의미: context root까지의 주소. -> 현재 경로 

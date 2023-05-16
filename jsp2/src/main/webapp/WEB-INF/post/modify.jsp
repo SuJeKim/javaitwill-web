@@ -15,6 +15,11 @@
         <nav>
             <ul>
                 <li>
+                    <c:url var="signOut" value="/user/signout" />
+                    <span>${ signedInUser }</span> <%-- 로그인된 사용자의 이름 --%>
+                    <a href="${ signOut }">로그 아웃</a>
+                </li>
+                <li>
                     <c:url var="mainPage" value="/" />
                     <a href="${ mainPage }">메인 페이지</a>
                 </li>
@@ -48,10 +53,15 @@
                 <div>
                     <input type="text" value="${ post.author }" readonly />
                 </div>
+                <c:if test="${ signedInUser == post.author }"> 
+                <%-- 만약 주소를 입력을 하고 들어오는 경우 버튼을 보이지 않게 하여 수정/삭제를 못하게 함. 또한,
+                    post 방식이기에 주소줄에 입력해서 들어갈수는 없음 주소줄에 입력해서 수정/삭제가 되는 것은 get 방식임.
+                 --%>
                 <div>
                     <button id="btnUpdate">수정완료</button> <%-- eventHandler사용 필. -> form에서 되는 방식도 바꿔야 함: form 안/밖에서 선언해도 됨. --%>
                     <button id="btnDelete">삭제</button>
                </div>
+               </c:if>
             </form>
        </main>
         
