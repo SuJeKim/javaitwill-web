@@ -31,8 +31,10 @@
      <!-- bean:자바 객체, property: 그 객체가 가지고 있는 멤버 변수 -->
      
      
-     <!-- 특정 패키지(com.itwill.spring1.web) 아래에 선언된 컴포넌트 애너테이션(@Controller, @RestController)이 선언된 클래스들을 bean으로 관리:
+     <!-- 특정 패키지(com.itwill.spring1.web) 아래에 선언된 컴포넌트 애너테이션(@Controller, @RestController)이 
+          선언된 클래스들을 bean으로 관리:
           컨트롤러 클래스들을 작성하는 패키지 이름.
+          그래서, 다른 패키지에서 @Controller을 작성하면 못 알아들음.
      -->
      <context:component-scan base-package="com.itwill.spring1.web" />
      
