@@ -31,7 +31,7 @@ public class ExampleController {
 
     
     // 해당 애너테이션은 Handler Mapping.
-    @GetMapping("/") // GET 방식의 요청 주소가 "/"(Context root)인 요청을 처리하는 메서드.
+    @GetMapping("/") // GET 방식의 요청 주소(요청 parameter)가 "/"(Context root)인 요청을 처리하는 메서드.
     // -> 추가 설명.
     // 해당(요청) 주소를 처리하는 메서드를 호출 즉, 요청 매핑/ 각 메서드마다 작성, 
     // 애너테이션을 사용함으로써 Dispatcher Servlet에서 찾을 수 있게 됨. 
