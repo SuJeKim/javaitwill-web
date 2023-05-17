@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.spring1.dto.UserDto;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -87,4 +89,12 @@ public class ExampleController {
        
        return "ex2"; // 결과 처리 페이지를 ex2.jsp로 감.
    }
+   
+   @GetMapping("/ex4")
+   public String getParamEx3(UserDto user) {
+       log.info("getParamEx3(user = {})", user);
+       
+       return "ex2"; 
+   }
+   
 }
