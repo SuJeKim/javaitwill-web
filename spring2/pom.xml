@@ -90,6 +90,19 @@
             <artifactId>spring-test</artifactId>
             <version>6.0.9</version>
         </dependency>
+        <!-- Oracle JDBC 라이브러리 -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>23.2.0.0</version>
+        </dependency>
+        <!-- HikariCP: Connection Pool(Data Source) -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.0.1</version> <!-- 기본 환경 설정은 application-context.xml =>  -->
+            
+        </dependency>
     </dependencies>
   
   <build>

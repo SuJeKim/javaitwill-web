@@ -9,5 +9,22 @@
         http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
     <!-- bean definitions here -->
+    <!-- HikariDataSourceUtill 참고 -->
+    <!-- springFrameWork가 HikariConfig hikariConfig = new Hikariconfig(); 생성자 호출 -->
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> <!-- 기본 생성자 호출/ HikariConfig hikariConfig = new HikariConfig();-->
+        <!-- hikariConfig.setDriverClassName("....") 메서드 호출 -->
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver" /> <!-- hikariconfig.setDriverClassName("oracle.jdbc.OracleDriver"); -->
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" /> <!-- config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe"); -->
+        <property name="username" value="scott" /> <!--  config.setUsername("scott");  -->
+        <property name="password" value="tiger" /> <!--  config.setPassword("tiger"); -->
+    </bean> <!-- springFarmework가 사용. -->
+    <!-- 결과: hikariConfig객체가 생성됨.  -->
+    <!-- bean == instance(생성된 객체) / bean내의 property는 setter() 호출.-->
+
+    <!-- HikariDataSource dataSource = new HikariDataSource(hikariConfig);-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <constructor-arg ref="hikariConfig" /> <!-- argument 설정. + ref: 참조변수 -->
+        
+    </bean>
 
 </beans>
