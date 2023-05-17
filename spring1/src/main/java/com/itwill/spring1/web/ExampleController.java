@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller 
 // Spring MVC 컴포넌트 애너테이션(@Component, @Controller, @Service, @Repository, ...) 중 하나. 
 // Controller 컴포넌트라는 것을 dispatcherServlet에게 알려주는 역할
+// 여기서는 작성만 함. 호출은 dispatcherServlet이.
 public class ExampleController {
 
     
@@ -29,13 +32,16 @@ public class ExampleController {
     // -> 추가 설명.
     // 해당(요청) 주소를 처리하는 메서드를 호출 즉, 요청 매핑/ 각 메서드마다 작성, 
     // 애너테이션을 사용함으로써 Dispatcher Servlet에서 찾을 수 있게 됨. 
+    
     public String home(Model model) {
         log.info("home()"); // log가 오류가 나면 이클립스에서 lombok 라이브러리를 가지고 있어야 됨. + Help > about:에서 lombok이 보이면 해결됨(없으면 종료).
         
         LocalDateTime now = LocalDateTime.now();
-        model.addAttribute("now", now);
+        model.addAttribute("now", now); 
+        // 뷰에 전달할 데이터를 세팅: 무조건 model 객체의 주소값을 가지고 와서 설정하고 넣으면 됨. argument model은 Dispatcher Servlet이 model객체를 생성하고 argument로 전달.
+        // 데이터를 전달하는 주체는 Dispatcher Servlet임.(jsp로 forward를 할 떄, model객체도 같이 넘김. -> jsp는 그것을 바탕으로 동적으로 HTML을 만들어서 DispatcherServlet에게 리턴)
         
-        return "index"; // 매핑되어 있는 controller method가 리턴하는 것: 뷰의 이름.
+        return "index"; // 매핑되어 있는 controller method가 리턴하는 것: 뷰의 이름(/WEB-INF/views/index.jsp)
     }
     
     @GetMapping("/ex1") // context-root를 제외한 주소 작성.
@@ -51,4 +57,34 @@ public class ExampleController {
         <property name="suffix" value=".jsp" /> <!-- 해당 폴더의 파일의 확장자가 .jsp -->
      </bean>   
      */
+    
+    @GetMapping("/ex2")
+    public void getParamEx(String username, int age) {
+        log.info("getParamEx(username={}, age={})", username, age);
+    }
+    // req.getParameter 리턴 값은 String임. -> 변환은 DispatcherServlet이 담당함. 호출하는 담당자가 DispatcherServlet인데 client한테 받은 request값을 분석해서 해당 parameter를 전달해줌. 
+    // argument 조건: request parameter의 이름과 같게 작성해야 함.
+    // 만약, 다르게 입력을 했을 경우
+    // -> String의 경우  request parameter을 못 찾으면 null.
+    // -> int의 경우 request parameter을 못 찾으면 req.getParameter 리턴 값은 String으로 null값이 리턴이 되는데 Integer.parserInt에서  execption됨.
+    // -> 서버와 브라우저에서 다 에러 뜸
+    // -> 해결 방안: 아래 참고.
+    
+   @PostMapping("/ex3")
+   public String getParamEx2(
+           @RequestParam(name = "username") String name, 
+           // 요청 파라메타 이름과 변수이름이 동일하지 않을 경우 -> requestParam이 name을 찾을 수가 없어 null.
+           // @RequestParam(name = "username") ==> 해당 애너테이션을 보고 requestParamer가 username을 찾고 값을 name에 넣어줌.
+           @RequestParam(defaultValue = "0") int age
+           // RequestParam가 비었을 경우(비여있는 문자열, null) 에러 발생함.
+           // ==> @RequestParam(defaultValue = "0"): RequestParam는 항상 String이어서 기본값 설정은 항상 문자열로.
+           
+           // ==> @RequestParam 사용하는 이유:
+           // DispatcherServlet은 RequestParam이 똑같은 이름을 찾기에 RequestParam과 Parameter의 변수가 동일한 것을 알려줄 때
+           // RequestParam이 비어있는 문자열이나 null인 값을 서버쪽에서 exception이 발생하지 않도록 기본값을 설정함.
+   ) {
+       log.info("getParamEX2(name={}, age={})", name, age);
+       
+       return "ex2"; // 결과 처리 페이지를 ex2.jsp로 감.
+   }
 }
