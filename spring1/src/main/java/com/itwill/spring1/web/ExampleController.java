@@ -49,6 +49,7 @@ public class ExampleController {
         // 데이터를 전달하는 주체는 Dispatcher Servlet임.(jsp로 forward를 할 떄, model객체도 같이 넘김. -> jsp는 그것을 바탕으로 동적으로 HTML을 만들어서 DispatcherServlet에게 리턴)
         
         return "index"; // 매핑되어 있는 controller method가 리턴하는 것: 뷰의 이름(/WEB-INF/views/index.jsp)
+        // 애는 DispatcherServlet에게 다음을 넘겨줘. DispatcherServlet이 다음 뷰의 이름을 확인을 하고 jsp 호출 후 forward방식으로 응답을 해.
     }
     
     @GetMapping("/ex1") // context-root를 제외한 주소 작성.
@@ -124,6 +125,9 @@ public class ExampleController {
        // 처음 요청주소가 그대로 남아있는 방식: forward.
        // => 어차피 같은 페이지로 갈 것인데 이렇게 forward를 하진 않음. 잘 사용 안함.
        return "forward:/sample";
+       // "forward:/sample"를 DispatcherServlet에게 전달을 하여 DispatcherServlet은 접두사를 빼고 해당 요청 주소를 reqest.getParmetar("/sample")을 찾아서
+       // 해당 요청주소를 다시 controller에게 넘김. controller에서 해당 요청 주소를 찾아서 DispatcherServlet이 리턴 값을 받고 jsp를 호출 및 응답함.
+       
    }
    
    // PRG 패턴: Post -> Redirect -> Get

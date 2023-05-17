@@ -5,6 +5,93 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <description>Spring MVC &amp; MyBatis Example</description>
+  
+    <!-- 프로젝트에서 사용하는 라이브러리(의존성) 이름/버전 설정 -->
+    <dependencies>
+        <!-- Java EE(Servlet/JSP, EL, action tag) 제대로 사용하기 위해. + javax == jakarta -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope> <!-- 톰캣 서버에서 제공이 되는 라이브러리. -> 빌드할 때 사용해야 하니 + 컴파일 할 때만 사용하고, 중복된 라이브러리들을 또 저장할 필요는 없다.-->
+            <!-- scope이 없는 다른 파일들은 웹 브라우저로 넘어감 즉, war파일로 됨.-->
+        </dependency>
+        <!-- JSTL -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <!-- JUnit Test: 서버에 업로드가 될 필요가 없음. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope> <!-- 프로젝트를 빌드할 때 사용이 됨 그 외는 업로드 되지 않음.-->
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Log4j, Slf4j logging 기능 -> log 사용. -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>compile</scope> <!-- 컴파일할 때만 사용한다. 컴파일 시 자동 삽입이 되기에 웹 서비스에서는 따로 저장할 필요가 없다.-->
+        </dependency>
+        <!-- Spring Web MVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>6.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>6.0.9</version>
+        </dependency>
+        <!-- Spring Test: junit과의 사이에서 중간다리 역할. -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>6.0.9</version>
+        </dependency>
+    </dependencies>
+  
   <build>
     <plugins>
       <plugin>
