@@ -8,6 +8,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
+    <!-- beans: dispatcherServlet이 생성할 객체 ==  Controller -->
     <!-- bean definitions here -->
     <!-- HikariDataSourceUtill 참고 -->
     <!-- 'springFrameWork'가 HikariConfig hikariConfig = new Hikariconfig(); 생성자 호출 -->
@@ -51,5 +52,9 @@
      <!-- 특정 패키지 아래에 있는 것(하위 폴더)을 검사헤서 조건(애너테이션 등)이 있는지 검색 및 객체 생성 
           해당 페키지 아래에 있는 인터페이스의 객체를 자동 생성 -> 인터페이스의 추상메서드를 구현해야 하는데 mapper를 찾음 mapper의 주소로 가서 생성후 구현하는 클래스를 가지고 온다. 즉, 객체를 생성한다.
      -->
+     
+     <!-- Service 애너테이션이 설정된 객체들을 생성하고 관리. -->
+     <context:component-scan base-package="com.itwill.spring2.service"></context:component-scan>
+     <!-- spring container가 스캔 -->
 
 </beans>

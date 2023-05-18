@@ -24,7 +24,31 @@ public class RepositoryTest {
     private PostRepository postRepository; // PostRepository는 추상메서드임. 그런데 객체가 생성이 됨.
     
     // test를 호출하는 것이 스프링 프레임워크인 거고 애가 JUnit 테스트르 부름
+    
     @Test
+    public void testDelete() {
+        int result = postRepository.deleteById(2);
+        Assertions.assertEquals(1, result);
+        log.info("result = {}", result);
+    }
+    
+    
+   // @Test
+    public void testUpdate() {
+        Post post = Post.builder()
+                .id(41) // 업데이트할 포스트 아이디
+                .title("업데이트 TEST") // 업데이트할 제목
+                .content("MyBatis 프레임워크를 사용한 DB 업데이트") //업데이트할 내용.
+                .build();
+        int result = postRepository.updateTitleAndContent(post);
+        Assertions.assertEquals(1, result);
+    }
+    
+    
+    
+    
+    
+    //@Test
     public void testselectById() {
         Post result = postRepository.selectById(5);
         Assertions.assertNotNull(result);

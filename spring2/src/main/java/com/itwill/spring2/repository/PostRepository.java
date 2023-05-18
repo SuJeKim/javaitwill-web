@@ -16,4 +16,8 @@ public interface PostRepository {
     List<Post> selectOrderByIdDesc();
     
     Post selectById(long id);
+    
+    int updateTitleAndContent(Post post);
+    
+    int deleteById(long id);
 }
