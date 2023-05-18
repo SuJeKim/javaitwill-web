@@ -2,6 +2,23 @@
 <!DOCTYPE mapper
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.spring2.repository.PostMapper">
+<mapper namespace="com.itwill.spring2.repository.PostRepository">
+<!-- namespace의 값은 PostRepository 인터페이스가 있는 패키지 이름과 인터페이스 이름. -->
 
+    <!-- id의 값은 PostRepository 인터페이스에서 선언하는 메서드 이름 -->
+    <!-- sql문장 쓸 떄 ; 쓰지 말기 -->
+    <insert id="insert">
+        insert into POSTS (TITLE, CONTENT, AUTHOR, CREATED_TIME, MODIFIED_TIME)
+        values (#{title}, #{content}, #{author}, systimestamp, systimestamp) 
+        <!--#{title}: 테이블의 model에서 getter 메서드를 호출. 맴버변수로 -->
+    </insert>
+    
+    <select id="selectOrderByIdDesc" resultType="com.itwill.spring2.domain.Post"> 
+    <!-- select에만 존재하는 속성, resultType: 이 메서드의 리턴(도메인을 리턴) 타입 + resultType을 원소로 갖는 리스트 한 행에 해당이 됨. 전체가 아님-->
+        select * from POSTS order by ID desc
+    </select>
+    
+    <select id="selectById" resultType="com.itwill.spring2.domain.Post">
+        select * from POSTS where id = #{id} <!-- #{id}: ?로 변환, argument 전달 필. -->
+    </select>
 </mapper>
