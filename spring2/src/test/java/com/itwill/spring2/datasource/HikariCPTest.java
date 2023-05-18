@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -38,7 +39,7 @@ public class HikariCPTest {
     @Qualifier("hikariConfig") // 해당 id를 가지고 있는 것으로 넣어라
     private HikariConfig config; 
     // 기본적으로 생성자를 호출하면 null
-    // springFrameWork: 의존성 주입을 제공하는 frameWork.
+    // springFrameWork(application-context.xml): 의존성 주입을 제공하는 frameWork.
     // 일반적인 객체 지향 프로그램에서는 객체를 사용하는 곳에서 객체를 담당함. -> 생성자를 호출함.
     // 객체들의 생성을 객체를 사용하고자 하는 클래스가 아니라 springFrameWork(객체들을 관리하는 클래스)가 관리를 함. + 해당 객체를 여러번 생성하지 않음. 딱 하나만 생성함.
     //  -> xml 설정을 하고 잇어야 함.(application-context.xml에 HikariConfig를 설정함)
@@ -64,6 +65,15 @@ public class HikariCPTest {
     // 2개가 동시에 있을 경우 오류가 나는 이유:
     // -> 다형성 때문에 HikariConfig <- HikariDataSource(상속 관계) => config에 넣어야 하는 것이 무엇인지 헷갈리게 됨.
     // HikariDataSource는 HikariConfig이다.  HikariDataSource에서 HikariConfig를 사용할 수 있음
+    
+    @Autowired
+    private SqlSessionFactoryBean sessionFactory;
+    
+    @Test
+    public void testSqlSession() {
+        Assertions.assertNotNull(sessionFactory);
+        log.info("session = {}", sessionFactory);
+    }
     
     @Test
     public void testDataSource() throws SQLException {

@@ -38,7 +38,7 @@
           ref: argument 전달. -> 25줄의 id를 찾아감. 즉, HikariDataSource를 객체를 아규먼트로 전달. 이용해서 사용.-->
         <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property> 
         <!-- value: argument의 값을 문자열로 전달. 
-            classpath를 찾아간다. 즉, classpath란: Java Resources의 main 하위 폴더들을 검사. 즉, 프로젝트가 사용할 수 있는 폴더들
+            classpath를 찾아간다. 즉, classpath란: Java Resources의 main 하위 폴더들. 즉, 프로젝트가 사용할 수 있는 폴더들
             **: 하위 폴더를 더 만들어도 된다. 즉, mappers 밑의 하위폴더들이 몇개 더 있어도 된다.
             *: 확장작가 xml인 모든 파일.
         -->
