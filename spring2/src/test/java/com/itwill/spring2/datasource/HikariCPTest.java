@@ -22,15 +22,22 @@ import lombok.extern.slf4j.Slf4j;
         locations = { "file:src/main/webapp/WEB-INF/application-context.xml" } // 해당 파일에서 설정한 것들을 unitTest가 알아야하기에 파일위치 설정.
 )
 public class HikariCPTest {
-    // 의존성 주입(dependency injection), 제어의 역전(IoC: Inversion of Control):
-    // 전통적인 자바 개발에서는 객체를 사용하는 곳에서 생성자를 호출하고, 메서드를 이용.
-    // 스프링에서는 스프링 컨테이너가 필요한 객체들을 미리 메모리에 생성해 두고,
-    // 필요한 곳에서 변수 선언과 애너테이션을 사용하면, 
-    // 스프링 컨테이너가 필요한 곳에 객체를 주입하는 개발 방식.
+ 
+    /*
+     * 의존성 주입(dependency injection), 제어의 역전(IoC: Inversion of Control):
+     * 전통적인 자바 개발에서는 객체를 사용하는 곳에서 생성자를 호출하고, 메서드를 이용.
+     * 스프링에서는 스프링 컨테이너(객체를 가지고 잇음)가 필요한 객체들을 미리 메모리에 생성해 두고,
+     * 필요한 곳에서 변수 선언과 애너테이션(선언)을 사용하면, 
+     * 스프링 컨테이너가 필요한 곳에 객체를 주입하는 개발 방식.
+     * 
+     * 제어의 역전 ->
+     * 객체를 생성하는 제어권을 가지고 있는 곳은 수동적으로 변했고, 스프링 프레임워크는 객체의 제어권과 주도권을 가짐.
+     */
 
     @Autowired // 스프링 컨테이너에서 (생성하고) 관리하는 bean을 변수에 자동 할당.
     @Qualifier("hikariConfig") // 해당 id를 가지고 있는 것으로 넣어라
-    private HikariConfig config; // 생성자를 호출하면 null
+    private HikariConfig config; 
+    // 기본적으로 생성자를 호출하면 null
     // springFrameWork: 의존성 주입을 제공하는 frameWork.
     // 일반적인 객체 지향 프로그램에서는 객체를 사용하는 곳에서 객체를 담당함. -> 생성자를 호출함.
     // 객체들의 생성을 객체를 사용하고자 하는 클래스가 아니라 springFrameWork(객체들을 관리하는 클래스)가 관리를 함. + 해당 객체를 여러번 생성하지 않음. 딱 하나만 생성함.

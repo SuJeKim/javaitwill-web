@@ -10,7 +10,7 @@
 
     <!-- bean definitions here -->
     <!-- HikariDataSourceUtill 참고 -->
-    <!-- springFrameWork가 HikariConfig hikariConfig = new Hikariconfig(); 생성자 호출 -->
+    <!-- 'springFrameWork'가 HikariConfig hikariConfig = new Hikariconfig(); 생성자 호출 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> <!-- 기본 생성자 호출/ HikariConfig hikariConfig = new HikariConfig();-->
         <!-- hikariConfig.setDriverClassName("....") 메서드 호출 -->
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" /> <!-- hikariconfig.setDriverClassName("oracle.jdbc.OracleDriver"); -->
@@ -23,8 +23,26 @@
 
     <!-- HikariDataSource dataSource = new HikariDataSource(hikariConfig);-->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-        <constructor-arg ref="hikariConfig" /> <!-- argument 설정. + ref: 참조변수 -->
-        
+        <constructor-arg ref="hikariConfig" /> <!-- argument 설정. + ref: 참조변수(생성되어 있는 객체) -->
     </bean>
+    
+    <!-- SqlSessionFactoryBean 객체:
+        Data Source(Connection Pool)을 이용해서 SQL 문장들을 실행하고 결과 처리를 수행하는 객체.
+        ==> DAO
+        ==> Mybiats가 가지고 있음
+        ==> context Framwork에 설정
+     -->
+     <bean id="SessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+         <!-- property name: 클래스가 가지고 잇는 맴버 변수(field) 이름-> setdataSource,
+          ref: argument 전달. -> 25줄의 id를 찾아감. 즉, HikariDataSource를 객체를 아규먼트로 전달. 이용해서 사용.-->
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml"></property> 
+        <!-- value: argument의 값을 문자열로 전달. 
+            classpath를 찾아간다. 즉, classpath란: Java Resources의 main 하위 폴더들을 검사. 즉, 프로젝트가 사용할 수 있는 폴더들
+            **: 하위 폴더를 더 만들어도 된다. 즉, mappers 밑의 하위폴더들이 몇개 더 있어도 된다.
+            *: 확장작가 xml인 모든 파일.
+        -->
+     
+     </bean>
 
 </beans>
