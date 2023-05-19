@@ -44,30 +44,34 @@
             </ul>
         </nav>
         
-        <main class="my-2">
+        <main class="my-2" >
             <div class="card" style="width: 18rem;">
-                <form class="card-body" action="">
+                <form class="card-body" id="spring2PostFormButton">
                     <div class="my-2">
                         <label class="form-label" for="id">번호</label>
-                        <input class="form-control"  id="id" value="${ post.id }" readonly />
+                        <input class="form-control" name="id" id="id" value="${ post.id }" readonly />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="title">제목</label>
-                        <input class="form-control"  id="title" value="${ post.title }"  />
+                        <input class="form-control" name="title" id="title" value="${ post.title }"  />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="content">내용</label>
-                        <textarea class="form-control"  id="content" >${ post.content }</textarea>
+                        <textarea class="form-control" name="content" id="content" >${ post.content }</textarea>
                     </div>
                      <div class="my-2">
                         <label class="form-label" for="author">작성자</label>
-                        <input class="form-control"  id="author" value="${ post.author }" readonly />
+                        <input class="form-control" name="author" id="author" value="${ post.author }" readonly />
                     </div>
                     
-                </form>
                 <div class="card-footer">
-                    
+                    <div class="d-flex justify-content-start">
+                        <button class="mx-2 btn btn-outline-danger" id="btnDelete">삭제</button>
+                        <button class="mx-2 btn btn-outline-success" id="btnUpdate">업데이트</button>
+                    </div>
                 </div>
+                </form>
+               
             </div>
         </main>
         
@@ -76,6 +80,8 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
             crossorigin="anonymous"></script>
+         <script src="../static/js/spring2-modify.js"></script>
+            
     </div>        
 	</body>
 </html>
