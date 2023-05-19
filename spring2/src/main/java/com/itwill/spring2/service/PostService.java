@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
+import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.repository.PostRepository;
 
@@ -65,10 +66,12 @@ public class PostService {
     }
     
     // 새 포스트 작성 페이지
-    public int create(Post post) {
-        log.info("create({})", post);
+    public int create(PostCreateDto dto) {
+        log.info("create({})", dto);
         
-        return postRepository.insert(post);
+        // PostCreateDto 타입을 Post로 변환해서(서로의 타입을 변경함)
+        // 리포지토리 계층의 메서드를 호출 - DB insert. 
+        return postRepository.insert(dto.toEntity()); 
     }
     
     // 포스트 업데이트
