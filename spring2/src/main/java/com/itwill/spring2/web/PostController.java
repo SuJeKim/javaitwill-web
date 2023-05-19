@@ -36,4 +36,9 @@ public class PostController {
         // /WEB-INF/views/post/list.jsp: 경로.
     }
     
+    @GetMapping("/create")
+    public void create() {
+        log.info("create() GET");
+    }
+    
 }
