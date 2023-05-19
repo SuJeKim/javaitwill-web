@@ -1,11 +1,13 @@
 package com.itwill.spring2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
+import com.itwill.spring2.dto.PostListDto;
 import com.itwill.spring2.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -38,10 +40,21 @@ public class PostService {
     private final PostRepository postRepository; // 2. (1) 생성자에 의한 의존성 주입
     
     // 포스트 목록 페이지
-    public List<Post> read() {
+    public List<PostListDto> read() {
         log.info("read()");
         
-        return postRepository.selectOrderByIdDesc();
+        List<Post> list =  postRepository.selectOrderByIdDesc();
+        
+        
+//        List<PostListDto> result = new ArrayList<>();
+//        for (Post p : list) {
+//            PostListDto dto = PostListDto.fromEntity(p);
+//            result.add(dto);
+//        }
+//        return result;
+        // 간단하게 만듬: 57줄
+        
+        return list.stream().map(PostListDto::fromEntity).toList(); // 익명 내부 클래스: 람다 표현식 + list가 하나씩 PostListDto로 넘어감. 반복문.
     }
     
     // 포스트 상세보기 페이지

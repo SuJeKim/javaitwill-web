@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"
-    %>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,15 +14,46 @@
             crossorigin="anonymous">
 	</head>
 	<body>
-	<div>
-        <header>
+	<div class="container-fluid">
+        <header class="my-2 p-5 text-center text-bg-dark">
             <h1>포스트 작성</h1>
         </header>
         
-        <nav>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <ul class="navbar-nav bg-light">
+                <li class="nav-item">
+                    <c:url var="mainPage" value="/"></c:url>
+                    <a class="nav-link" href="${ mainPage }">메인 페이지</a>
+                </li>
+                <li class="nav-item">
+                    <c:url var="postListPage" value="/post/list" />
+                    <a class="nav-link" href="${ postListPage }">포스트 목록</a>
+                </li>
+            </ul>
         </nav>
 		
-        <main>
+        <main class="my-2">
+            <div class="card" >
+                <form method="post"> <%-- action이 없을 경우현재 페이지로 요청 보냄 --%>
+                   <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="title">제목</label> <%-- title이라는 id를 가지고 있는 label --%>
+                            <input class="form-control" type="text" id="title" name="title" required autofocus />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="content">내용</label> <%-- title이라는 id를 가지고 있는 label --%>
+                            <textarea class="form-control" id="content" name="content" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="author">작성자 아이디</label>
+                            <input class="form-control" type="text" id="author" name="author" required />
+                        </div>
+                    </div>
+                    <div class="card-footer my-2">
+                        <input class="form-control btn btn-outline-primary"   type="submit" value="작성 완료" />
+                    </div>
+                </form>
+            </div>
         </main>
 		
          <script 

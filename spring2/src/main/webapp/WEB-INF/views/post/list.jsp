@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %> 
+<%--JSTL에서는 LocalDateTime 객체를 사용하지 못하기 떄문에 Timestamp 타입 --%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +48,7 @@
                         <tr>
                             <th scope="col">번호</th>
                             <th scope="col">제목</th>
-                            <th scope="col">내용</th>
+                            <th scope="col">작성자</th>
                             <th scope="col">작성시간</th>
                         </tr>
                     </thead>
@@ -55,8 +57,16 @@
                             <tr>
                                 <td scope="row">${ post.id }</td>
                                 <td>${ post.title }</td>
-                                <td>${ post.content }</td>
-                                <td>${ post.created_time }</td>
+                                <td>${ post.author }</td>
+                                <td>
+                                    <fmt:formatDate value="${ post.createdTime }" pattern="yyyy-MM-dd HH:mm"/>
+                                </td> 
+                                <%-- Post 클래스를 사용할 경우에는 맴버 변수가 동일하기에 문제가 생기지 않지만, 
+                                    DTO를 만들고 나서는 DTO에서 맴버변수가 동일하지 않기에 문제가 생긴다. 
+                                    DTO에서 getter 메서드 호출
+                                    
+                                    HH: 24시간 단위, MM: 분과 구분
+                                --%>
                             </tr>
                         </c:forEach>
                     </tbody>
