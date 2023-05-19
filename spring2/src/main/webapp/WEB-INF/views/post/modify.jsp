@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,7 +16,7 @@
 	<body>
 	<div class="container-fluid">
 		<header class="my-2 p-3 text-center text-bg-dark">
-            <h1>포스트 상세 보기</h1>
+            <h1>포스트 수정하기</h1>
         </header>
         
         <%-- 
@@ -36,6 +35,12 @@
                     <c:url var="postListPage" value="/post/list" /> <%--param이 없을 경우 --%>
                     <a class="nav-link" href="${ postListPage }">포스트 목록</a>
                 </li>
+                 <li class="nav-item">
+                    <c:url var="postdetailPage" value="/post/detail" >
+                        <c:param name="id" value="${ post.id }"></c:param>
+                    </c:url> 
+                    <a class="nav-link" href="${ postdetailPage }">상세보기</a>
+                </li>
             </ul>
         </nav>
         
@@ -48,32 +53,20 @@
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="title">제목</label>
-                        <input class="form-control"  id="title" value="${ post.title }" readonly />
+                        <input class="form-control"  id="title" value="${ post.title }"  />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="content">내용</label>
-                        <textarea class="form-control"  id="content" readonly>${ post.content }</textarea>
+                        <textarea class="form-control"  id="content" >${ post.content }</textarea>
                     </div>
                      <div class="my-2">
                         <label class="form-label" for="author">작성자</label>
                         <input class="form-control"  id="author" value="${ post.author }" readonly />
                     </div>
-                     <div class="my-2">
-                        <label class="form-label" for="createdTime">작성 시간</label>
-                        <fmt:formatDate value="${ post.createdTime }" pattern="yyyy-MM-dd HH:mm:ss" var="created"/>
-                        <input class="form-control" t id="createdTime" value="${ created }" readonly />
-                    </div>
-                     <div class="my-2">
-                        <label class="form-label" for="modifiedTime">수정 시간</label>
-                        <fmt:formatDate value="${ post.modifiedTime }" pattern="yyyy-MM-dd HH:mm:ss" var="modified"/>
-                        <input class="form-control"  id="modifiedTime" value="${ modified }" readonly />
-                    </div>
+                    
                 </form>
                 <div class="card-footer">
-                    <c:url var="PostmodifyPage" value="/post/modify">
-                        <c:param name="id" value="${ post.id }"></c:param>
-                    </c:url>
-                    <a class="btn btn-outline-primary form-control" href="${ PostmodifyPage }">수정하기</a>
+                    
                 </div>
             </div>
         </main>

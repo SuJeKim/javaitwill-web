@@ -68,4 +68,13 @@ public class PostController {
         
     }
     
+    // request paramter = method의 parameter
+    @GetMapping("/modify")
+    public void modify(long id, Model model) {
+        log.info("modify(id = {})", id);
+        
+        PostDetailDto dto = postService.read(id);
+        model.addAttribute("post", dto);
+    }
+    
 }
