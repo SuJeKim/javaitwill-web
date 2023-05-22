@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+      "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 주체: MyBiats -->      
+<!-- namespace의 값은 PostRepository 인터페이스가 있는 패키지 이름과 인터페이스 이름. -->
+ <!-- sql문장 쓸 떄 ; 쓰지 말기 -->
+<mapper namespace="com.itwill.spring2.repository.ReplyRepository">
+
+    <select id="selectByPostId" 
+        resultType="com.itwill.spring2.domain.Reply">
+        select * from REPLIES 
+        where POST_ID = #{post_id}
+    </select>
+    <!-- #{} == ? + com.itwill.spring2.domain.Reply의 필드와 이름이 같음.
+                + myBatis에서 변수 역할.
+     -->
+    <!-- resultType: select의 결과인 resultSet(executeQuery)을 무슨 타입으로 변환을 할 것인지를 알려줌 
+                   : 반드시 class 타입으로 적어야 함. + 그 타입으로 리턴이 됨
+    -->
+
+    <insert id="insert">
+        insert into replies (post_id, reply_text, writer)
+        values (#{post_id}, #{reply_text}, #{writer})
+    </insert>
+    <!-- 테이블에서 time들은 기본 값이 존재하기에 삽입안 해도 됨.
+         삽입하는 코드는 post-mapper.xml을 참고하기
+    -->
+    
+    <update id="update">
+        update replies
+        set reply_text = #{reply_text}, modified_Time = systimestamp
+        where id = #{id}
+    </update>
+    
+    <delete id="delete"> 
+        delete from replies where id = #{id}
+    </delete>
+    
+    <!-- java.lang.Long: wrapper Class(기본 데이터 타입을 객체로 감싸는 클래스) -->
+    <!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
+    <select id="selectReplyCountWithPostId" resultType="java.lang.Long">
+        select count(ID) from replies where post_id = #{post_id}
+    </select>
+   
+</mapper>      
