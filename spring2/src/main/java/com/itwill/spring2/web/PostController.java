@@ -83,17 +83,20 @@ public class PostController {
         log.info("delete(id = {})", id);
         
         // postListDto -> domain
-       postService.delete(id);
-        
+       int result = postService.delete(id);
+       log.info("삭제 결과 = {}", result); 
+       
         return "redirect:/post/list";
     }
     
     @PostMapping("/update")
     public String update(PostUpdateDto dto) {
-        log.info("update({})", dto);
+        log.info("update(dto = {})", dto);
         
         int result = postService.update(dto);
-        return "redirect:/post/list";
+        log.info("업데이트 결과 = {}", result);
+        
+        return "redirect:/post/list"; // "redirect:/post/detail?id=" + dto.getId(); (getId를 사용할 거면 dto에 @Getter가 존재하여 함)
     }
     
 }

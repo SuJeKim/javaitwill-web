@@ -79,8 +79,8 @@ public class PostService {
     }
     
     // 포스트 업데이트
-    public int update(PostUpdateDto dto) {
-        log.info("updaet({})", dto);
+    public int update(PostUpdateDto dto) { // 만약 dto 클래스들을 따로 만들지 않았을 경우에는 Post 타입으로 선언.
+        log.info("update({})", dto);
         
         
         return postRepository.updateTitleAndContent(dto.updateEntity());

@@ -23,7 +23,7 @@
         select * from POSTS where id = #{id} <!-- #{id}: ?로 변환, argument 전달 필. -->
     </select>
     
-    <!-- 리턴 타입은 정수 다음 각 getter(#{})를 가지고 있는 객체는 post객체.-->
+    <!-- 리턴 타입은 정수 다음 각 getter(#{})를 가지고 있는 객체는 post객체. systimestamp: 오라클 내장 객체(시간)-->
     <update id="updateTitleAndContent">
         update POSTS
         set title = #{title}, content = #{content}, modified_time = systimestamp

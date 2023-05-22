@@ -81,7 +81,9 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
             crossorigin="anonymous"></script>
-         <script src="../static/js/spring2-modify.js"></script>
+         <script src="../static/js/post-modify.js"></script> 
+         <%-- ../: 한 단계 위를 의미를 하는데(WEB-INF - 서버 내에서만 동작, 브라우저에서 못찾음), 
+         클라이언트에서는 WEB-INF에 직접 접근이 안되기에(모르기에) 한 단계 위가 webapp이라고 고려함.--%>
             
     </div>        
 	</body>
