@@ -46,8 +46,9 @@ public class PostService {
     public List<PostListDto> read() {
         log.info("read()");
         
-        List<Post> list =  postRepository.selectOrderByIdDesc();
+        //List<Post> list =  postRepository.selectOrderByIdDesc(); -> 댓글이 안 나옴
         
+        return postRepository.selectWithReplyCount();
         
 //        List<PostListDto> result = new ArrayList<>();
 //        for (Post p : list) {
@@ -55,9 +56,9 @@ public class PostService {
 //            result.add(dto);
 //        }
 //        return result;
-        // 간단하게 만듬: 57줄
+//        ==> 간단하게 만듬: 57줄
         
-        return list.stream().map(PostListDto::fromEntity).toList(); // 익명 내부 클래스: 람다 표현식 + list가 하나씩 PostListDto로 넘어감. 반복문.
+//        return list.stream().map(PostListDto::fromEntity).toList(); // 익명 내부 클래스: 람다 표현식 + list가 하나씩 PostListDto로 넘어감. 반복문.
     }
     
     // 포스트 상세보기 페이지

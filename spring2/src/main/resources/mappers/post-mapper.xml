@@ -6,6 +6,7 @@
 <!-- namespace의 값은 PostRepository 인터페이스가 있는 패키지 이름과 인터페이스 이름. -->
 
     <!-- 테이블 join은 domain에서는 한 개의 테이블만 가능하기에 다음과 같이 설정. -->
+    <!-- 별명을 반드시 줘야 함 만약, 별명이 없으면 COUNT(R.id)이대로 출력이 되기에 getter메서드를 사용할 수가 없음  -->
     <select id="selectWithReplyCount" resultType="com.itwill.spring2.dto.PostListDto">
         SELECT P.id, P.title, P.author, P.created_time, COUNT(R.id) as RCNT
         FROM posts P

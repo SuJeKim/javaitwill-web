@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j // 로그
-@RequiredArgsConstructor // 생성자에 의한 의존성 주입
+@RequiredArgsConstructor // 생성자에 의한 의존성 주입(final로 선언된 필드를 초기화하는 생성자.)
 @RequestMapping("/post")  // PostController 클래스의 메서드들은 요청 주소가 "/post"로 시작. -> 메서드는 하위 주소만 적어도 됨.
 // 매핑 방식 지정을 할 경우엔 controller class가 가지고 있는 메서드에서만 
 @Controller // DispatcherServlet에게 controller 컴포넌트로 등록.

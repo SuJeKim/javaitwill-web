@@ -42,7 +42,7 @@
         </nav>
         
         <main>
-            <div>
+            <div class="card">
                 <table class="table">
                     <thead>
                         <tr>
@@ -61,10 +61,11 @@
                                         <c:param name="id" value="${ post.id }" />
                                     </c:url>
                                     <a href="${ PostDetailPage }">${ post.title }</a>
+                                    <span class="text-danger">[${ post.rcnt }]</span>
                                 </td>
                                 <td>${ post.author }</td>
                                 <td>
-                                    <fmt:formatDate value="${ post.createdTime }" pattern="yyyy-MM-dd HH:mm"/>
+                                    <fmt:formatDate value="${ post.created_time }" pattern="yyyy-MM-dd HH:mm"/>
                                 </td> 
                                 <%-- Post 클래스를 사용할 경우에는 맴버 변수가 동일하기에 문제가 생기지 않지만, 
                                     DTO를 만들고 나서는 DTO에서 맴버변수가 동일하지 않기에 문제가 생긴다. 
