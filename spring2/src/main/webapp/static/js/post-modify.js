@@ -1,11 +1,11 @@
 /**
- * spring2-modify.js
+ * post-modify.js
  * /post/modify.jsp에서 사용
  */
 
  document.addEventListener('DOMContentLoaded', function () {
      //form 요소
-     const form = document.querySelector('#spring2PostFormButton');
+     const form = document.querySelector('#modifyForm');
      
      // input#id 요소를 찾음.
      const inputId = document.querySelector('input#id');
@@ -68,8 +68,30 @@
          }
 
      });
-     
+
      });
      
+      // 수정 버튼에 클릭 이벤트 핸들러(리스너)를 등록.
+    btnUpdate.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const id = inputId.value;
+        const title =inputTitle.value;
+        const contet = textareaContent.value;
+        
+        if(title === '' || content === '') {
+            alert('제목, 내용을 입력하세요');
+            return;
+        }
+        const result = confirm(`NO. ${id} 포스트를 업데이트 할까요?`);
+        
+        if (result) {
+            form.action = 'update';
+            form.method = 'post';
+            form.submit();
+        }
+    });
+
+
      
  })

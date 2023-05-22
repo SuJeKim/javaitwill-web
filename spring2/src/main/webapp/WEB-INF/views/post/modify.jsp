@@ -46,14 +46,15 @@
         
         <main class="my-2" >
             <div class="card" style="width: 18rem;">
-                <form class="card-body" id="spring2PostFormButton">
+                <form class="card-body" id="modifyForm">
                     <div class="my-2">
                         <label class="form-label" for="id">번호</label>
                         <input class="form-control" name="id" id="id" value="${ post.id }" readonly />
+                        <%-- reqest parameter에서 name 속성이 있어야 submit이 됨 + id: for에서 찾기 위해서 --%>
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="title">제목</label>
-                        <input class="form-control" name="title" id="title" value="${ post.title }"  />
+                        <input class="form-control" name="title" id="title" value="${ post.title }"  autofocus />
                     </div>
                     <div class="my-2">
                         <label class="form-label" for="content">내용</label>

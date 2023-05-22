@@ -12,6 +12,7 @@ import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.dto.PostDetailDto;
 import com.itwill.spring2.dto.PostListDto;
+import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -84,6 +85,14 @@ public class PostController {
         // postListDto -> domain
        postService.delete(id);
         
+        return "redirect:/post/list";
+    }
+    
+    @PostMapping("/update")
+    public String update(PostUpdateDto dto) {
+        log.info("update({})", dto);
+        
+        int result = postService.update(dto);
         return "redirect:/post/list";
     }
     
