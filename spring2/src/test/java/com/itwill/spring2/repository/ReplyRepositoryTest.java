@@ -61,9 +61,9 @@ public class ReplyRepositoryTest {
 //    @Test
     public void testInsert() {
         Reply entity = Reply.builder()
-                .reply_text("JUnit test")
-                .writer("guest")
-                .post_id(3)
+                .reply_text("부럽다")
+                .writer("2시간 남았따...")
+                .post_id(4)
                 .build();
         
         int result = replyRepository.insert(entity);
