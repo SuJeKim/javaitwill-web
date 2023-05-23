@@ -126,6 +126,12 @@
             <artifactId>spring-tx</artifactId>
             <version>6.0.9</version>
         </dependency>
+        <!-- jackson-databind: REST 서버스에서 이용 (DIStatcher Servlet이 관리함) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.1</version>
+        </dependency>
     </dependencies>
   
   <build>
