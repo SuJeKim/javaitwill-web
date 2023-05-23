@@ -40,7 +40,7 @@
         </nav>
         
         <main class="my-2">
-            <div class="card" style="width: 18rem;">
+            <section class="card" style="width: 18rem;">
                 <form class="card-body" action="">
                     <div class="my-2">
                         <label class="form-label" for="id">번호</label>
@@ -75,7 +75,35 @@
                     </c:url>
                     <a class="btn btn-outline-primary form-control" href="${ PostmodifyPage }">수정하기</a>
                 </div>
-            </div>
+            </section> <!--포스트 상세 보기 카드 -->
+            
+            <section class="my-2 card">
+                <div class="card-header">
+                    <span>댓글</span>
+                    <span id="replyCount">100</span>개 <!-- TODO: 실제 댓글 개수 -->
+                    <button class="btn" id="btnToggleReply" data-toggle="toggle-off">보이기</button> <!-- 태그안에서 표준 태그 외에 사용할 목적으로 태그 만들수 있음. 접듀사로 종종 data를 붙임-->
+                </div>
+                <div class="card-body collapse" id="replyToggleDiv">
+                    <!-- 내 댓글 등록 -->
+                    <div class="my-2 row" >
+                        <label class="form-label" for="replyText">나의 댓글</label>
+                        <div class="col-10">
+                            <textarea class="form-control" id="replyText"></textarea>
+                            <input class="d-none" id="writer" value="admin" /> <!-- d-none: 화면에 안 나옴. TODO: 로그인 사용자 아이디 -->
+                        </div>
+                        <div class="col-2">
+                            <button class="form-control btn btn-outline-success" id="btnAddReplys">등록</button>
+                        </div>
+                    </div>
+                    <!-- 댓글 목록 보여줄 영역 -->
+                    <div class="my-2 row" id="replies">댓글 목록</div>
+                    
+                </div>
+            </section> <!-- 댓글 등록, 댓글 리스트 카드 -->
+            
+            
+            
+            
         </main>
         
         
@@ -83,6 +111,8 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
             crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios -->   
+         <script src="../static/js/reply.js"></script> <!-- 순서 중요!! 중복된 것 넣지 말기!! 버전 주의!! bootStrap을 사용하기 위해 하단에 배치해야 함. -->
     </div>        
 	</body>
 </html>
