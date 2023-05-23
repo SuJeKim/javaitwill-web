@@ -64,6 +64,7 @@ public class PostController {
         
         // 서비스 계층의 메서드를 호출해서 화면에 보여줄 PostDetailDto를 가져옴.
         PostDetailDto dto = postService.read(id);
+        
         // 뷰에 PostDetailDto를 전달.
         model.addAttribute("post", dto);
         

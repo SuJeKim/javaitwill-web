@@ -2,6 +2,7 @@ package com.itwill.spring2.service;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.spring2.dto.ReplyCreateDto;
 import com.itwill.spring2.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,11 @@ public class ReplyService {
 
     private final ReplyRepository replyRepository; // spring context가 @을 보고 생성 및 초기화 함. -> 생성자에 의한 의존성 주입.
     
-    
+
+    public int create(ReplyCreateDto dto) {
+        log.info("create(dto={})", dto);
+        
+        return replyRepository.insert(dto.toEntity());
+    }
     
 }

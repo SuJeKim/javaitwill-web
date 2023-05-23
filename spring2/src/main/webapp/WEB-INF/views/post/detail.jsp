@@ -78,9 +78,9 @@
             </section> <!--포스트 상세 보기 카드 -->
             
             <section class="my-2 card">
-                <div class="card-header">
+                <div class="card-header text-bold">
                     <span>댓글</span>
-                    <span id="replyCount">100</span>개 <!-- TODO: 실제 댓글 개수 -->
+                    <span id="replyCount">${ post.replyCount }</span>개 <!-- TODO: 실제 댓글 개수 -->
                     <button class="btn" id="btnToggleReply" data-toggle="toggle-off">보이기</button> <!-- 태그안에서 표준 태그 외에 사용할 목적으로 태그 만들수 있음. 접듀사로 종종 data를 붙임-->
                 </div>
                 <div class="card-body collapse" id="replyToggleDiv">
