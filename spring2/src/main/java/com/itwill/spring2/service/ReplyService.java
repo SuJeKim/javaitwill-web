@@ -34,7 +34,22 @@ public class ReplyService {
         
         List<Reply> list =  replyRepository.selectByPostId(postId);
         
-        return list.stream().map(ReplyReadDto::fromEnetity).toList();
+        return list.stream().map(ReplyReadDto::fromEnetity).toList(); 
+        // 변경없이 argument를 전달할 경우 사용함.
+        // ReplyReadDto객체에 있는 메서드(좌우 변경 가능함.)
+        // ReplyReadDto객체에서 메서드 호출이거나 argument(ReplyReadDto.fromEnetity(list.get(x)))를 전달.
+        // ReplyReadDto::fromEnetity == (x) -> ReplyReadDto.fromEntity(x)
+    }
+    
+    /**
+     * 
+     * @param id 댓글 id
+     * @return
+     */
+    public int delete(long id) {
+        log.info("delete(id = {})",id);
+        
+        return replyRepository.delete(id);
     }
     
 }

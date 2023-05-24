@@ -20,7 +20,32 @@
   const deleteReply = (e) => {
      // alert(JSON.stringify(e));
      //  console.log(e); // 이벤트 출력
-     console.log(e.target);
+     
+     console.log(e.target); //e.target: 이벤트가 발생한 타겟. 여기서는 삭제 버튼
+     
+     if(!confirm('정말 삭제할까요?')){ // no
+         return;
+     }
+     
+     // 삭제할 댓글 아이디:
+     const id = e.target.getAttribute('data-id');
+     
+     // 삭제 요청 URL
+     const reqUrl = `/spring2/api/reply/${id}`;
+     
+     // 삭제 요청을 Ajax 방식으로 보냄.
+     axios.delete(reqUrl)
+          .then((response) => {
+              console.log(response);
+              alert('댓글 삭제 성공');
+              
+              // 댓글 목록 갱신
+              getRepliesWithPostId();
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+     
   };
   
   
