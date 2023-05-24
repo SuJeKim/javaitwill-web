@@ -30,6 +30,14 @@ public class ReplyController {
 
     private final ReplyService replyService;
     
+    /*
+     * ResponseEntity:
+     * 클라이언트에게 전송될 HTTP 응답
+     * ->  응답 본문, 상태 코드, 헤더 등을 포함하는 HTTP 응답을 캡슐화
+     * -> 개발자는 세부적인 응답 설정을 조작하고, 다양한 상태 코드 및 헤더를 설정하여 클라이언트에게 전송
+     * 
+     */
+    
     @PostMapping
     public ResponseEntity<Integer> createReply(@RequestBody ReplyCreateDto dto) { // @RequestBody 안에 ReplyCreateDto dto이 존재.
         log.info("createReply(dto = {})", dto);

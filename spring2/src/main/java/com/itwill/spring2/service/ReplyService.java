@@ -1,5 +1,6 @@
 package com.itwill.spring2.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -35,10 +36,13 @@ public class ReplyService {
         List<Reply> list =  replyRepository.selectByPostId(postId);
         
         return list.stream().map(ReplyReadDto::fromEnetity).toList(); 
-        // 변경없이 argument를 전달할 경우 사용함.
         // ReplyReadDto객체에 있는 메서드(좌우 변경 가능함.)
-        // ReplyReadDto객체에서 메서드 호출이거나 argument(ReplyReadDto.fromEnetity(list.get(x)))를 전달.
         // ReplyReadDto::fromEnetity == (x) -> ReplyReadDto.fromEntity(x)
+        
+        // 다음 표기법을 사용할려면 지켜야 하는 규칙.
+        // 1. 변경없이 argument를 전달할 경우, argument가 1개만 있을 경우 사용함.
+        // 2-1. ReplyReadDto객체에서 메서드 호출이거나 (예) String::length -> (x) -> x.length()
+        // 2-2. 메서드가 argument에서 호출하는 리턴값일 경우.  (예) Timestamp::valueOf -> (x) -> {return Timestamp.valueOf(x);}
     }
     
     /**
