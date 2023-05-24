@@ -81,7 +81,11 @@
                 <div class="card-header text-bold">
                     <span>댓글</span>
                     <span id="replyCount">${ post.replyCount }</span>개 <!-- TODO: 실제 댓글 개수 -->
-                    <button class="btn" id="btnToggleReply" data-toggle="toggle-off">보이기</button> <!-- 태그안에서 표준 태그 외에 사용할 목적으로 태그 만들수 있음. 접듀사로 종종 data를 붙임-->
+                    <button class="btn" id="btnToggleReply" data-toggle="toggle-off">
+                          <img id="toggleBtnIcon" 
+                            src="../static/assets/icons/toggle2-off.svg" 
+                            alt="toggle-off" width="32"/>
+                    </button> <!-- 태그안에서 표준 태그 외에 사용할 목적으로 태그 만들수 있음. 접듀사로 종종 data를 붙임-->
                 </div>
                 <div class="card-body collapse" id="replyToggleDiv">
                     <!-- 내 댓글 등록 -->
@@ -96,7 +100,7 @@
                         </div>
                     </div>
                     <!-- 댓글 목록 보여줄 영역 -->
-                    <div class="my-2 row" id="replies">댓글 목록</div>
+                    <div class="my-2 row" id="replies"></div>
                     
                 </div>
             </section> <!-- 댓글 등록, 댓글 리스트 카드 -->

@@ -11,6 +11,7 @@
         resultType="com.itwill.spring2.domain.Reply">
         select * from REPLIES 
         where POST_ID = #{post_id}
+        order by MODIFIED_TIME desc
     </select>
     <!-- #{} == ? + com.itwill.spring2.domain.Reply의 필드와 이름이 같음.
                 + myBatis에서 변수 역할.
