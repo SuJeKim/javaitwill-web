@@ -68,8 +68,9 @@
             .then((response) => { // 성공 응답이 왔을 때 실행할 콜백을 등록. +  response객체에 있는 data => replyReadDto
             
                 // response에 포함된 data  객체에서 id, replyText 갑을 찾음.
-                // data는 객체에 있는 id 값(key 값)을 {id, replyText}의 전자에 replyText의 값을 후자로.
+                // data는 객체에 있는 id 속성 값(key 값)을 {id, replyText}의 전자에 replyText의 속성 값을 후자로.
                 // {id, replyText}: replyReadDto의 맴버변수와 동일하게 작성하기.
+                // response.data가 배열일 경우 
                 const {id, replyText} = response.data; 
                 
                 // id와 replyText를 모달의 input과 textarea에 씀.
@@ -83,6 +84,33 @@
   
   };
   
+  const updateReply = (e) => {
+      // 수정할 댓글 아이디
+      const id = modalInput.value;
+      
+      // 수정할 댓글 내용
+      const replyText = modalTextarea.value;
+      
+      // PUT 방식의 Ajax 요청을 보냄.
+      const reqUrl = `/spring2/api/reply/${id}`;
+      const data = {replyText}; 
+      // 원래 JS의 객체 선언시 {key : value}, {replyText : replyText}: key === value의 이름이 동일한 경우에 간단하게 사용 가능.
+      // -> {replyText : replyText}: 1개의 맴버 변수를 갖고 있는 객체
+     
+      // Ajax 요청에 대한 성공/실패 콜백 등록.
+      axios.put(reqUrl,data)
+            .then((response) => {
+                alert(`댓글 업데이트 성공(${response.data})`);
+                getRepliesWithPostId(); // 댓글 목록 업데이트
+            })
+            .catch((error) => {})
+            .finally(() => {modal.hide();});
+  };
+  
+  
+  // 모달에서 [수정 내용 저장] 버튼 이벤트 리스너 등록.
+  // ++ updateReply == (e) => {} 함수.
+  modalBtnUpdate.addEventListener('click', updateReply);
   
   
   // 댓글 목록 HTML을 작성하고 replies 영역에 추가하는 함수.

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.spring2.domain.Reply;
 import com.itwill.spring2.dto.ReplyCreateDto;
 import com.itwill.spring2.dto.ReplyReadDto;
+import com.itwill.spring2.dto.ReplyUpdateDto;
 import com.itwill.spring2.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -62,6 +63,20 @@ public class ReplyService {
         log.info("delete(id = {})",id);
         
         return replyRepository.delete(id);
+    }
+
+
+    public int update(long id, ReplyUpdateDto dto) {
+        log.info("update(id = {}, dto ={})", id, dto);
+        
+        Reply entity = Reply.builder()
+                .id(id)
+                .reply_text(dto.getReplyText())
+                .build();
+        
+        log.info("entity = {}", entity);
+        
+        return replyRepository.update(entity);
     }
     
 }
