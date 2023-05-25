@@ -106,8 +106,35 @@
             </section> <!-- 댓글 등록, 댓글 리스트 카드 -->
             
             
+            <!-- 댓글 수정 Modal -->
             
-            
+            <div id="replyUpdateModal" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">댓글 수정</h5>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 수정할 댓글 아이디 - d-none: 화면에 보이지 않도록 -->
+                           <input id="modalRelyId" class="d-none" />
+                           <!-- 수정할 댓글 내용. -->
+                           <textarea id="modalReplyText" class="form-control"></textarea>
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">취소</button> <!--bootstrap에서 data-bs-dismiss="modal"로 eventHandler 등록. -->
+                            <button type="button" id="modalBtnUpdate"
+                                class="btn btn-primary">변경 내용 저장.</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </main>
         
         
@@ -116,7 +143,7 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
             crossorigin="anonymous"></script>
          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios -->   
-         <script src="../static/js/reply.js"></script> <!-- 순서 중요!! 중복된 것 넣지 말기!! 버전 주의!! bootStrap을 사용하기 위해 하단에 배치해야 함. -->
+         <script src="../static/js/reply.js"></script> <!-- 순서 중요!! 중복된 것 넣지 말기!! 버전 주의(js,css 동일 버전)!! bootStrap을 사용하기 위해 하단에 배치해야 함. -->
     </div>        
 	</body>
 </html>

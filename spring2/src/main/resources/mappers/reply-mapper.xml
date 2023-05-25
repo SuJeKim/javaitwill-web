@@ -20,6 +20,14 @@
                    : 반드시 class 타입으로 적어야 함. + 그 타입으로 리턴이 됨
     -->
 
+
+    <select id="selectById" resultType="com.itwill.spring2.domain.Reply">
+        select * from replies
+        where id = #{id}
+    </select>
+
+
+
     <insert id="insert">
         insert into replies (post_id, reply_text, writer)
         values (#{post_id}, #{reply_text}, #{writer})

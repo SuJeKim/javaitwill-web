@@ -45,6 +45,14 @@ public class ReplyService {
         // 2-2. 메서드가 argument에서 호출하는 리턴값일 경우.  (예) Timestamp::valueOf -> (x) -> {return Timestamp.valueOf(x);}
     }
     
+    public ReplyReadDto readById(long id) {
+        log.info("readById(id = {})", id);
+        
+        Reply entity = replyRepository.selectById(id);
+        
+        return ReplyReadDto.fromEnetity(entity);
+    }
+    
     /**
      * 
      * @param id 댓글 id

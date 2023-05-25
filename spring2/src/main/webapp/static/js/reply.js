@@ -48,12 +48,39 @@
      
   };
   
+  // 댓글 수정 모달 객체 생성
+  // + backdrop: true ==>  modal 외부 클릭시 사라짐.
+  const modal = new bootstrap.Modal('div#replyUpdateModal', {backdrop: true});
+  
+  // 모달 element 찾기
+  const modalInput = document.querySelector('input#modalRelyId'); 
+  const modalTextarea = document.querySelector('textarea#modalReplyText');
+  const modalBtnUpdate = document.querySelector('button#modalBtnUpdate');
   
   // 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수 - 댓글 수정 모달을 보여주는 함수
   const showUpdateModal = (e) => {
       //alert(JSON.stringify(e));
       //console.log(e);
-      console.log(e.target);
+      //console.log(e.target); -> e.target: 이벤트가 발생한 타겟, 여기서는 수정 버튼
+      const id = e.target.getAttribute('data-id'); // data-id: 수정 버튼에 있는 요소 (102 줄 참고)
+      const reqUrl = `/spring2/api/reply/${id}`;
+      axios.get(reqUrl) // 서버로 GET 방식의 Ajax 요청을 보냄: reqUrl로 비동기 요청을 보내서 실행할 함수를 만듦.
+            .then((response) => { // 성공 응답이 왔을 때 실행할 콜백을 등록. +  response객체에 있는 data => replyReadDto
+            
+                // response에 포함된 data  객체에서 id, replyText 갑을 찾음.
+                // data는 객체에 있는 id 값(key 값)을 {id, replyText}의 전자에 replyText의 값을 후자로.
+                // {id, replyText}: replyReadDto의 맴버변수와 동일하게 작성하기.
+                const {id, replyText} = response.data; 
+                
+                // id와 replyText를 모달의 input과 textarea에 씀.
+                modalInput.value = id;
+                modalTextarea.value = replyText;
+                
+                // 모달을 보여줌.
+                modal.show();
+            })
+            .catch((error) => console.log(error));  // 실패 응답이 왔을 때 실행할 콜백 등록.
+  
   };
   
   

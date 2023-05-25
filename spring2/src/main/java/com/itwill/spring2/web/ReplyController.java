@@ -38,6 +38,8 @@ public class ReplyController {
      * 
      */
     
+    // REST: RequestMapping & RequestMethod에서 PostMapping은 create
+    
     @PostMapping
     public ResponseEntity<Integer> createReply(@RequestBody ReplyCreateDto dto) { // @RequestBody 안에 ReplyCreateDto dto이 존재.
         log.info("createReply(dto = {})", dto);
@@ -68,6 +70,17 @@ public class ReplyController {
         
         return ResponseEntity.ok(list);
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<ReplyReadDto> readById(@PathVariable long id) {
+        log.info("readbyId(id={})", id);
+        
+        ReplyReadDto dto = replyService.readById(id);
+        log.info("dto = {}",dto);
+        
+        return ResponseEntity.ok(dto);
+    }
+    
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Integer> deleteReply(@PathVariable long id) {
